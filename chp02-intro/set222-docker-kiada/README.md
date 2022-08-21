@@ -1,4 +1,4 @@
-# Chapter 2, Section 2.22 Creating a Dockerfile for the image
+# 2.2.2 Exploring Docker and building the sample application
 
 ## Objectives
 1. Build Node script with Dockerfile (Node base image) 
@@ -7,7 +7,9 @@
 
 ---
 
-## Setup
+## Notes
+
+### Setup
 
 Create Node script as `app.js` in ./src
 
@@ -112,11 +114,9 @@ ENTRYPOINT ["node", "app.js"]
 ```
 
 
-
-
 ---
 
-## Docker operations
+### Docker operations
 
 Build Docker image and tag as `kiada`
 
@@ -227,7 +227,8 @@ print("Done")
 
 
 ---
-# Create another image, then push to DockerHub
+
+### Create another image, then push to DockerHub
 
 
 ```bash
@@ -275,7 +276,7 @@ docker push georgebaptista/kiada:0.1
  
 
 ---
-## Clean-up (if necessary)
+### Clean-up (if necessary)
 
 
 ```bash
