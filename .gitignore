@@ -1,0 +1,24 @@
+# FILES
+.DS_Store
+API-SERVER
+CLUSTER-PSP-SETUP
+tls.cert
+tls.key
+*.cert
+*.key
+*.ipynb_checkpoints
+
+# DIRECTORIES
+bin/
+vendor/
+00-blog/
+INGRESS-RULES/
+MANUAL-INGRESS/
+MISC/
+PREDEFINED-RESOURCES/
+PSP/
+REFERENCE/
+SETUP-Fluentd/
+SETUP-rbac-and-metrics/
+CHP-NOTES/
+
