@@ -5,8 +5,8 @@
 3. Work through updated Kubernetes APIs
 
 * Original source mateiral for Kubernetes In Action, V2
-[Book](https://www.manning.com/books/kubernetes-in-action-second-edition)
-[GitHub Repo](https://github.com/luksa/kubernetes-in-action-2nd-edition)
+	- [Book](https://www.manning.com/books/kubernetes-in-action-second-edition)
+	- [GitHub Repo](https://github.com/luksa/kubernetes-in-action-2nd-edition)
 
 ------------
 
