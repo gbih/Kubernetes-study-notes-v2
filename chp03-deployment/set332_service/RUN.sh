@@ -26,7 +26,6 @@ echo $HR
 
 enter
 
-
 echo "kubectl expose deployment kiada --type=LoadBalancer --port 8080 -n=chp03-set332"
 kubectl expose deployment kiada --type=LoadBalancer --port 8080  -n=chp03-set332
 echo $HR
