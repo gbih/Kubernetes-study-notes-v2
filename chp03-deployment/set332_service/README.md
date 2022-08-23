@@ -7,3 +7,7 @@
 
 ## Notes
 
+* Several types of Service objects exist. 
+* Some services expose pods only within the cluster, while others expose them externally. 
+* A service with the type LoadBalancer provisions an external load balancer, which makes the service accessible via a public IP. 
+

@@ -26,6 +26,7 @@ echo $HR
 
 enter
 
+echo "Create service for ki"
 echo "kubectl expose deployment kiada --type=LoadBalancer --port 8080 -n=chp03-set332"
 kubectl expose deployment kiada --type=LoadBalancer --port 8080  -n=chp03-set332
 echo $HR
@@ -33,6 +34,23 @@ echo $HR
 
 echo "kubectl get all -n=chp03-set332"
 kubectl get all -n=chp03-set332
+enter
+
+
+echo "kubectl get svc kiada -n=chp03-set332 -o" json
+kubectl get svc kiada -n=chp03-set332 -o json
+enter
+
+
+echo "EXTERNAL_IP=\$(kubectl get svc kiada -n=chp03-set332 -o jsonpath='{.status.loadBalancer.ingress[0].ip}')" 
+EXTERNAL_IP=$(kubectl get svc kiada -n=chp03-set332 -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+echo $EXTERNAL_IP
+echo $HR
+
+echo "curl http://$EXTERNAL_IP:8080"
+curl http://$EXTERNAL_IP:8080
+curl http://$EXTERNAL_IP:8080
+curl http://$EXTERNAL_IP:8080
 echo $HR
 
 
