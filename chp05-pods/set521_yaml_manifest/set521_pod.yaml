@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kiada
+  namespace: chp05-set521
+spec:
+  containers:
+  - name: kiada
+    image: georgebaptista/kiada:0.1
+    ports:
+    - containerPort: 8080

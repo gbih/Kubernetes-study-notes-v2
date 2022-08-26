@@ -17,3 +17,8 @@ Instead of deploying containers individually, you deploy and manage a group of c
 Although pods may contain several, it's not uncommon for a pod to contain just a single container. 
 
 When a pod has multiple containers, all of them run on the same worker node, a single pod instance never spans multiple nodes.
+
+---
+
+Pods and other K8s objects are usually created via a JSON or YAML manifest file and posting it to the Kubernetes API.
+
