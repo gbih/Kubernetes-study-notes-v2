@@ -8,4 +8,3 @@
 ### Setup
 
 For now, use the prebuilt container with the sidecar (instead of building your own).
-```
