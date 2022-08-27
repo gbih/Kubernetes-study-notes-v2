@@ -12,6 +12,12 @@ enter () {
   echo $HR
 }
 
+enter_no_clear () {
+  echo ""
+  read -p "[[ Press ENTER to continue ]]"
+  echo $HR
+}
+
 resize > /dev/null 2>&1 # redirect output and error
 
 HR=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -)
