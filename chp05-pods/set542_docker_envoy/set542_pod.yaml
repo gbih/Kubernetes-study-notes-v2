@@ -5,7 +5,7 @@ metadata:
   namespace: chp05-set542
 spec:
   containers:
-  - name: kiada-ssl
+  - name: kiada
     image: luksa/kiada:0.2
     # image: georgebaptista/kiada-ssl-proxy
     ports:

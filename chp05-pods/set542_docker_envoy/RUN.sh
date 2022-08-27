@@ -43,6 +43,23 @@ echo ""
 curl https://$IP:8443 --insecure
 enter
 
+
+echo "View logs of the kiada-ssl container:"
+echo ""
+echo "kubectl logs kiada-ssl -c kiada -n=chp05-set542"
+echo ""
+kubectl logs kiada-ssl -c kiada -n=chp05-set542
+enter
+
+
+echo "View logs of the envoy container:"
+echo ""
+echo "kubectl logs kiada-ssl -c envoy -n=chp05-set542"
+echo ""
+kubectl logs kiada-ssl -c envoy -n=chp05-set542
+enter
+
+
 echo "kubectl describe pod kiada-ssl -n=chp05-set542"
 kubectl describe pod kiada-ssl -n=chp05-set542
 echo $HR
