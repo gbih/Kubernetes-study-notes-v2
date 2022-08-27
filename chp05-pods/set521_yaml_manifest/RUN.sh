@@ -31,8 +31,6 @@ sleep 1
 enter
 
 
-
-
 echo "kubectl get pods -l '!env' -n=chp05-set521 --show-labels"
 kubectl get pods -l '!env' -n=chp05-set521 --show-labels
 
@@ -54,15 +52,9 @@ done
 enter
 
 
-echo "kubectl run --image=curlimages/curl -it --restart=Never --rm kiada curl $IP:8080"
-kubectl run --image=curlimages/curl -it --restart=Never --rm kiada curl $IP:8080
-enter
+echo "kubectl attach -i kiada-stdin --n=chp05-set521"
+kubectl attach -i kiada-stdin --n=chp05-set521
 
-
-echo "kubectl get pod kiada -o yaml -n=chp05-set521"
-kubectl get pod kiada -o yaml -n=chp05-set521
-
-enter
 
 echo "kubectl logs kiada -c kiada -n=chp05-set521"
 kubectl logs kiada -c kiada -n=chp05-set521
