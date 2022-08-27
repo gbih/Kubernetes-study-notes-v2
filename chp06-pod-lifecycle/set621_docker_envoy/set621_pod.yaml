@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kiada-ssl
+  namespace: chp06-set621
+spec:
+  containers:
+  - name: kiada
+    image: luksa/kiada:0.2
+    # image: georgebaptista/kiada-ssl-proxy
+    ports:
+    - name: http
+      containerPort: 8080
+  - name: envoy
+    image: luksa/kiada-ssl-proxy:0.1
+    # image: georgebaptista/kiada-ssl-proxy
+    ports:
+    - name: https
+      containerPort: 8443
+    - name: admin
+      containerPort: 9901
