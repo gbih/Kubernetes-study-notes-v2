@@ -31,6 +31,10 @@ Build Docker image and tag as `kiada-stdin`
 
 
 ```bash
+docker build -t kiada-stdin ./src --quiet
+```
+
+```bash
 docker tag kiada georgebaptista/kiada-stdin
 ```
 
