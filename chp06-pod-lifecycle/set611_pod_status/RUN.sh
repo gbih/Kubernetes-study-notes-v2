@@ -23,19 +23,19 @@ while [[ $(kubectl get pods $POD0 -n=chp06-set611 -o 'jsonpath={..status.conditi
 do
 # cannot have spacing at beginning of line in this syntax
 kubectl get pods $POD0 -n=chp06-set611 -o custom-columns=\
-INITIALIZED:..status.conditions['?(@.type=="Initialized")'].status,\
 POD_SCHEDULED:..status.conditions['?(@.type=="PodScheduled")'].status,\
-READY:..status.conditions['?(@.type=="Ready")'].status,\
-CONTAINERS_READY:..status.conditions['?(@.type=="ContainersReady")'].status
+INITIALIZED:..status.conditions['?(@.type=="Initialized")'].status,\
+CONTAINERS_READY:..status.conditions['?(@.type=="ContainersReady")'].status,\
+READY:..status.conditions['?(@.type=="Ready")'].status
 sleep 0.2
 done
 
 # print final status
 kubectl get pods $POD0 -n=chp06-set611 -o custom-columns=\
-INITIALIZED:..status.conditions['?(@.type=="Initialized")'].status,\
 POD_SCHEDULED:..status.conditions['?(@.type=="PodScheduled")'].status,\
-READY:..status.conditions['?(@.type=="Ready")'].status,\
-CONTAINERS_READY:..status.conditions['?(@.type=="ContainersReady")'].status
+INITIALIZED:..status.conditions['?(@.type=="Initialized")'].status,\
+CONTAINERS_READY:..status.conditions['?(@.type=="ContainersReady")'].status,\
+READY:..status.conditions['?(@.type=="Ready")'].status
 
 enter
 
