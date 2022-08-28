@@ -13,6 +13,9 @@ kubectl apply -f $FULLPATH/set631_pod.yaml
 echo $HR
 
 
+echo "POD0=\$(kubectl get pods -n=chp06-set631 -o jsonpath={'.items[0].metadata.name'})"
+POD0=$(kubectl get pods -n=chp06-set631 -o jsonpath={'.items[0].metadata.name'})
+echo ""
 
 
 while [[ $(kubectl get pods $POD0 -n=chp06-set631 -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]
