@@ -17,7 +17,7 @@ echo "kubectl apply -f $FULLPATH/set626_pod.yaml"
 kubectl apply -f $FULLPATH/set626_pod.yaml
 echo $HR
 
-echo "kubectl wait --for=condition=Ready=True pod liveness -n=chp06-set626 --timeout=120s"
+echo "kubectl wait --for=condition=Ready=True pod kiada-liveness -n=chp06-set626 --timeout=120s"
 kubectl wait --for=condition=Ready=True pod kiada-liveness -n=chp06-set626 --timeout=120s
 echo ""
 

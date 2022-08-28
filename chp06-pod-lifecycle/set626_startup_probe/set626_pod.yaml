@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kiada-liveness
+  namespace: chp06-set626
+spec:
+  containers:
+  - name: kiada 
+    image: georgebaptista/kiada:0.1
+    ports:
+    - name: http
+      containerPort: 8080
+    startupProbe:
+      httpGet:
+        path: /
+        port: http
+      periodSeconds: 10
+      failureThreshold: 12
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 8080
+  - name: envoy
+    image: luksa/kiada-ssl-proxy:0.1
+    ports:
+    - name: https
+      containerPort: 8443
+    - name: admin
+      containerPort: 9901
+    livenessProbe:
+      httpGet:
+        path: /ready
+        port: admin
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 2
+      failureThreshold: 3
