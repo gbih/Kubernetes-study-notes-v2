@@ -1,0 +1,102 @@
+Even seemingly harmless operations such as changing permissions or ownership of a file result in a new copy of the entire file being created in the read/write layer. If you perform this type of operation on a large file or many files, the image size may swell significantly.
+%
+Don’t add unnecessary files to the build directory, as they will slow down the build process—especially if the Docker daemon is located on a remote system.
+%
+Each directive creates a new layer. I have already mentioned that when you delete a file, it is only marked as deleted in the new layer and is not removed from the layers below. Therefore, deleting a file with a subsequent directive won’t reduce the size of the image. If you use the RUN directive, make sure that the command it executes deletes all temporary files it creates before it terminates.
+%
+Entering a running container with `kubectl exec` is a great first step when you want to debug an app. When something breaks, the first thing you’ll want to investigate is the actual state of the system your application sees.
+%
+If you use Linux, you can reduce the resources required by Minikube by creating the cluster without a VM. Use this command: `minikube start --vm-driver none`.
+%
+If you want to list containers using your local docker CLI instance, as in the case of Docker Desktop, run the following command: `eval $(minikube docker-env)`.
+%
+Each VM incurs costs. To reduce the cost of your cluster, you can reduce the number of nodes to one, or even to zero while not using it. See next section for details.
+%
+You can always append `--help` to any `kubectl` command to get more information.
+%
+Executing the `kubectl describe` command without specifying the object name is useful when only one object of a certain type exists. You don’t have to type or copy/paste the object name.
+%
+If you want to see the complete structure of an object (the complete hierarchical list of fields without the descriptions), try `kubectl explain pods --recursive`.
+%
+The `jq` tool is very handy if you want to see only a part of the object’s structure. For example, to display the node’s status conditions, you can run `kubectl get node <name> -o json | jq .status.conditions`. The equivalent tool for YAML is `yq`.
+%
+As you complete the exercises throughout this book, you may find it useful to run the `kubectl get events` command each time you make changes to one of your objects. This will help you learn what happens beneath the surface.
+%
+Whenever you want to create a pod manifest from scratch, you can also use the following command to create the file and then edit it to add more fields: `kubectl run kiada --image=luksa/kiada:0.1 --dry-run=client -o yaml > mypod.yaml`. The `--dry-run=client` flag tells `kubectl` to output the definition instead of actually creating the object via the API.
+%
+The `kubectl port-forward` command can also forward connections to services instead of pods and has several other useful features. Run `kubectl port-forward --help` to learn more.
+%
+The application in the container must be bound to a port on the loopback device for the Kubelet to reach it. If it listens only on the pod’s eth0 network interface, you won’t be able to reach it with the `kubectl port-forward` command.
+%
+You can display timestamps by only typing `--timestamps` without the value. For boolean options, merely specifying the option name sets the option to `true`. This applies to all `kubectl` options that take a Boolean value and default to `false`.
+%
+By default, the `kubectl delete` command waits until the object no longer exists. To skip the wait, run the command with the `--wait=false` option.
+%
+You can use the `jq` tool to print out the value of a pod’s `phase` field like this: `kubectl get po kiada -o json | jq .status.phase`.
+%
+You can also display the container status(es) using `jq` like this: `kubectl get po kiada -o json | jq .status.containerStatuses`.
+%
+Make sure that the `/healthz` HTTP endpoint doesn’t require authentication or the probe will always fail, causing your container to be restarted continuously.
+%
+When running a Java application in your container, you may want to use an HTTP GET probe instead of an exec liveness probe that starts an entire JVM. The same applies to commands that require considerable computing resources.
+%
+Because the state of a pod can change quickly, inspecting just its status may not tell you everything you need to know. Rather than inspecting the state at a particular moment in time, reviewing the pod’s events is usually a better way to get the full picture.
+%
+Using an HTTP GET post-start hook might cause the container to enter an endless restart loop. Never configure this type of lifecycle hook to target the same container or any other container in the same pod.
+%
+If successful completion of the pre-stop hook is critical to the proper operation of your system, make sure that it runs successfully. I’ve experienced situations where the pre-stop hook didn’t run at all, but the engineers weren’t even aware of it.
+%
+If the imagePullPolicy is set to Always and the image registry is offline, the container will not run even if the same image is already stored locally. A registry that is unavailable may therefore prevent your application from (re)starting.
+%
+Containers don’t necessarily start at the same moment. If pulling the image takes time, the container may start long after all the others have already started. Consider this if a container depends on others.
+%
+A reduction of the termination grace period is rarely necessary. However, it is advisable to extend it if the application usually needs more time to shut down gracefully.
+%
+Don’t forget to ensure that your init containers also handle the `TERM` signal so that they shut down immediately if you delete the pod object while it’s still being initialized.
+%
+Before you mount a volume in a container to preserve files across container restarts, consider how this affects the container’s self-healing capability.
+%
+You can see what node a pod is scheduled to by running `kubectl get po -o wide`.
+%
+Use the following command to see which network volumes that are attached to a node: `kubectl get node <node-name> -o json | jq .status.volumesAttached`.
+%
+As an application developer, you should never include persistent volume definitions in your application manifests. You should include persistent volume claims because they specify the storage requirements of your application.
+%
+You can change the reclaim policy of an existing PersistentVolume at any time. If it’s initially set to Delete, but you don’t want to lose your data when deleting the claim, change the volume’s policy to Retain before doing so.
+%
+If a persistent volume is Released and you subsequently change its reclaim policy from Retain to Delete, the PersistentVolume object and the underlying storage will be deleted immediately. However, if you instead delete the object manually, the underlying storage remains intact.
+%
+Values that the YAML parser might interpret as something other than a string must be enclosed in quotes. This includes numeric values such as `1234`, and Boolean values such as `true` and `false`. Some other special strings must also be quoted, otherwise they would also be interpreted as Boolean or other types. These include the values `true`, `false`, `yes`, `no`, `on`, `off`, `y`, `n`, `t`, `f`, `null`, and others.
+%
+To display only the key/value pairs, combine `kubectl` with `jq`. For example: `kubectl get cm kiada-config -o json | jq .data`. Display the value of a given entry as follows: `kubectl... | jq '.data["status-message"]'`.
+%
+When you use `kubectl get -o yaml` to display the YAML definition of a pod, note that the file permissions are represented as decimal values. For example, you’ll regularly see the value 420. This is the decimal equivalent of the octal value 0644, which is the default file permissions.
+%
+If you use the `subPath` field to mount individual files instead of the entire configMap volume, the file won’t be updated when you modify the config map.
+%
+Like config maps, the maximum size of a secret is approximately 1MB.
+%
+Since entries in a secret are always represented as Base64-encoded values, working with secrets (especially reading them) is not as human-friendly as working with config maps, so use config maps wherever possible. But never sacrifice security for the sake of comfort.
+%
+Instead of injecting secrets into environment variables, project them into the container as files in a secret volume. This reduces the likelihood that the secrets will be inadvertently exposed to attackers.
+%
+You can use `-n` instead of `--namespace` to specify the namespace in `kubectl` commands.
+%
+You can use `-A` instead of `--all-namespaces` when you want to list objects or perform an action across all namespaces.
+%
+The names of most objects must conform to the naming conventions for DNS subdomain names, as specified in RFC 1123, that is, they may contain only lowercase alphanumeric characters, hyphens, and dots, and must start and end with an alphanumeric character. The same applies to namespaces, but they may not contain dots.
+%
+To quickly switch to a different namespace, you can set up the following alias: `alias kns='kubectl config set-context --current --namespace '`. You can then switch between namespaces with kns some-namespace. Alternatively, you can install a `kubectl` plugin that does the same thing. You can find it at https://github.com/ahmetb/kubectx
+%
+Make sure you enclose the annotation value in quotes if the YAML parser would otherwise treat it as something other than a string. If you don’t, a cryptic error will occur when you apply the manifest. For example, if the annotation value is a number like `123` or a value that could be interpreted as a boolean (`true`, `false`, but also words like `yes` and `no`), enclose the value in quotes (examples: `"123"`, `"true"`, `"yes"`) to avoid the following error: `unable to decode yaml ... ReadString: expects " or n, but found t`.
+%
+If you’re unable to access the service via the node ports, check if you can do so via its internal cluster IP from within the cluster, as described previously.
+%
+If you’re using Minikube, you can easily access your NodePort services through your browser by running `minikube service <service-name> [-n <namespace>]`.
+%
+To list all services and the ports they expose in the `kiada` namespace, you can run the command `nslookup -query=SRV any.kiada.svc.cluster.local`. To list all services in the cluster, use the name `any.any.svc.cluster.local`.
+%
+If you want to manually control whether or not a pod is included in a service, add a label key such as `enabled` to the pod and set its value to `true`. Then add the label selector `enabled=true` to your service. Remove the label from the pod to remove the pod from the service.
+%
+Readiness probes that try to be too smart can cause more problems than they solve. As a rule of thumb, readiness probes shouldn’t test external dependencies, but can test dependencies within the same pod.
+%
