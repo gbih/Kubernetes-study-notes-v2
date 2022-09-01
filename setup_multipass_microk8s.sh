@@ -99,7 +99,7 @@ echo $HR
 
 #####################
 
-# Shell and editor-related
+# Shell, editor-related, misc utilities
 
 echo "Shorten bash shell:"
 multipass exec $VM -- bash -c "echo 'export PROMPT_DIRTRIM=1' >> ~/.bashrc"
@@ -111,6 +111,15 @@ multipass exec $VM -- bash -c "sudo apt-get update"
 multipass exec $VM -- bash -c "sudo apt-get install xterm -y"
 multipass exec $VM -- bash -c "sudo apt-get install rename"
 echo $HR
+
+echo "Install ack"
+multipass exec $VM -- bash -c "sudo apt install ack -y"
+echo $HR
+
+echo "Install jq"
+multipass exec $VM -- bash -c "sudo apt-get install jq -y"
+echo $HR
+
 
 #####################
 
