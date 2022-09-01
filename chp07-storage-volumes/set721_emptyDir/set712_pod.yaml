@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: quiz
+  namespace: chp07-set712
+spec:
+  # Define a volume in the pod
+  volumes: 
+  - name: quiz-data
+    emptyDir: {}
+  containers:
+  - name: quiz-api
+    image: georgebaptista/quiz-api
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+  - name: mongo
+    image: mongo:5
+    # Mount the volume in the container
+    volumeMounts:
+    # name must match one of the volumes defined above in this pod
+    - name: quiz-data
+      # Location where MongoDB stores its files
+      mountPath: /data/db
+      readOnly: false
