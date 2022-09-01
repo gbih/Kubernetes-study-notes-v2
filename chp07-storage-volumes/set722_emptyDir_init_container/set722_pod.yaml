@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: quiz
+  namespace: chp07-set722
+spec:
+  # Define a volume in the pod
+  volumes: 
+  - name: initdb
+    emptyDir: {}
+  - name: quiz-data
+    emptyDir: {}
+  # Mount initdb emptyDir volume in init container. 
+  # This container copies the insert-questions.js file
+  initContainers:
+  - name: installer
+    image: georgebaptista/quiz-initdb-script-installer:0.1
+    volumeMounts:
+    - name: initdb
+      mountPath: /initdb.d
+  containers:
+  - name: quiz-api
+    image: georgebaptista/quiz-api
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+  - name: mongo
+    image: mongo:5
+    # Mount the volume in the container
+    volumeMounts:
+    # name must match one of the volumes defined above in this pod
+    - name: quiz-data
+      # Location where MongoDB stores its files
+      mountPath: /data/db
+      readOnly: false
+    # Mount initdb emptyDir volume in mongo container where MongoDB looks for initialization scripts
+    - name: initdb
+      mountPath: /docker-entrypoint-initdb.d/
+      readOnly: true
