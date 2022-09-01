@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: quiz2
+  namespace: chp07-set733
+spec:
+  volumes: 
+  - name: quiz-data
+  # Use node-local instead of network storage, so we ensure 
+  # the pod is always deployed to the same node
+    hostPath:
+      path: /tmp/quiz-data
+  containers:
+  - name: quiz-api
+    image: georgebaptista/quiz-api
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+  - name: mongo
+    image: mongo:5
+    volumeMounts: 
+    - name: quiz-data
+      mountPath: /data/db
