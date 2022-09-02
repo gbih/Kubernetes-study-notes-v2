@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: quiz
+  namespace: chp08-set822
+spec:
+  containers:
+  - name: quiz-api
+    image: georgebaptista/quiz-api
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+  - name: mongo
+    image: mongo:5
