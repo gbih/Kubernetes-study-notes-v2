@@ -12,23 +12,26 @@ echo "kubectl apply -f $FULLPATH/set821_pod.yaml"
 kubectl apply -f $FULLPATH/set821_pod.yaml
 echo $HR 
 
-echo "kubectl apply -f $FULLPATH/set821_pv.yaml"
-kubectl apply -f $FULLPATH/set821_pv.yaml
+echo "kubectl apply -f $FULLPATH/set821_pv_quizdata.yaml"
+kubectl apply -f $FULLPATH/set821_pv_quizdata.yaml
+echo $HR 
+
+echo "kubectl apply -f $FULLPATH/set821_pv_otherdata.yaml"
+kubectl apply -f $FULLPATH/set821_pv_otherdata.yaml
 echo $HR 
 
 # Still not possible to pass arbitrary jsonpath to kubectl wait?
 # https://github.com/kubernetes/kubernetes/issues/83094
-echo "Wait for PV status to be Available:"
+echo "Wait for PV quiz-data status to be Available:"
 until kubectl get pv/quiz-data --output=jsonpath='{.status.phase}' | grep "Available"; do : echo "PV Status: " kubectl get pv/quiz-data --output=jsonpath='{.status.phase}'; done
-# while [[ $(kubectl get pv/quiz-data -o 'jsonpath={..status.phase}') != "Available" ]]; do echo "waiting for PV status" && sleep 1; done
 echo $HR 
 
-# echo "kubectl get pv quiz-data -o wide"
-# kubectl get pv quiz-data -o wide
-# echo $HR 
+echo "Wait for PV other-data status to be Available:"
+until kubectl get pv/other-data --output=jsonpath='{.status.phase}' | grep "Available"; do : echo "PV Status: " kubectl get pv/quiz-other --output=jsonpath='{.status.phase}'; done
+echo $HR 
 
-echo "kubectl describe pv quiz-data"
-kubectl describe pv quiz-data
+echo "kubectl get pv -o wide"
+kubectl get pv -o wide
 
 enter
 
@@ -42,6 +45,10 @@ echo $HR
 
 echo "kubectl delete pv quiz-data"
 kubectl delete pv quiz-data
+echo $HR
+
+echo "kubectl delete pv other-data"
+kubectl delete pv other-data
 echo $HR
 
 echo "kubectl delete ns chp08-set821"
