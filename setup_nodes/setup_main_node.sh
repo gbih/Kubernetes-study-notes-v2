@@ -82,9 +82,7 @@ multipass exec $VM -- bash -c "sudo apt-get update"
 multipass exec $VM -- bash -c "sudo apt install docker.io -y"
 multipass exec $VM -- bash -c "sudo docker version"
 echo "Assuming we pass docker username and passwd as environmental variables"
-# multipass exec $VM -- bash -c "sudo docker login --username $DOCKER_USER --password $DOCKER_PWD"
-multipass exec $VM -- bash -c "sudo docker login --username georgebaptista --password CUisdfsdjfkd8937473Uhdjfjjfdfod09"
-
+multipass exec $VM -- bash -c "sudo docker login --username $DOCKER_USER --password $DOCKER_PWD"
 echo $HR
 
 echo "Docker test"
