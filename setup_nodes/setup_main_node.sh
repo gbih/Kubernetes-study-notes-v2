@@ -40,7 +40,8 @@ echo $HR
 # Install Microk8s Kubernetes distribution
 
 echo "Install microk8s"
-multipass exec $VM -- bash -c "sudo snap install microk8s --classic --channel=1.19/stable"
+# multipass exec $VM -- bash -c "sudo snap install microk8s --classic --channel=1.19/stable"
+multipass exec $VM -- bash -c "sudo snap install microk8s --classic"
 echo $HR
 
 echo "Disable ha-cluster, re-enable etfd"
@@ -81,7 +82,9 @@ multipass exec $VM -- bash -c "sudo apt-get update"
 multipass exec $VM -- bash -c "sudo apt install docker.io -y"
 multipass exec $VM -- bash -c "sudo docker version"
 echo "Assuming we pass docker username and passwd as environmental variables"
-multipass exec $VM -- bash -c "sudo docker login --username $DOCKER_USER --password $DOCKER_PWD"
+# multipass exec $VM -- bash -c "sudo docker login --username $DOCKER_USER --password $DOCKER_PWD"
+multipass exec $VM -- bash -c "sudo docker login --username georgebaptista --password CUisdfsdjfkd8937473Uhdjfjjfdfod09"
+
 echo $HR
 
 echo "Docker test"
@@ -94,7 +97,7 @@ echo "Install Python stuff"
 echo "Transfer requirements file from host to vm:"
 multipass transfer ./requirements.txt $VM:/home/ubuntu/src/
 multipass exec $VM -- bash -c "sudo apt install python3-pip -y"
-multipass exec $VM -- bash -c "pip3 install -r src/requirements.txt"
+multipass exec $VM -- bash -c "pip3 install -r /home/ubuntu/src/requirements.txt"
 echo $HR
 
 #####################
@@ -125,11 +128,11 @@ echo $HR
 
 # Mount local host to multipass microk8s instance
 
-echo "Mount local host on ./working to $VM:/home/ubuntu/src/working:"
+echo "Mount local host on ../working to $VM:/home/ubuntu/src/working:"
 echo "On OSX, need to set this up beforehand: Security & Privacy preferences > Full Disk Access > multipassd"
 echo ""
-echo "multipass mount ./working $VM:/home/ubuntu/src/working"
-multipass mount ./working $VM:/home/ubuntu/src/working
+echo "multipass mount ../../working $VM:/home/ubuntu/src/working"
+multipass mount ../../working $VM:/home/ubuntu/src/working
 echo $HR
 
 #####################
