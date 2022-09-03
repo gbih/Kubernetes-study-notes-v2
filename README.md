@@ -1,8 +1,9 @@
 # Study Notes for Kubernetes In Action, v2
 
-1. Use multipass on OSX with microk8s
-2. Explore how to best use K8s in terms of MLOps
-3. Work through updated Kubernetes APIs
+1. Use multipass on OSX with microk8s.
+2. Explore how to best use K8s in terms of MLOps.
+3. Work through updated Kubernetes APIs.
+4. Explore main concept of K8s, which is to automate the management of clusters.
 
 * Original source material for Kubernetes In Action, V2
     - [Book](https://www.manning.com/books/kubernetes-in-action-second-edition)
