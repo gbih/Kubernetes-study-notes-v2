@@ -1,0 +1,45 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    annotations:
+      hostPathProvisionerIdentity: actionbook-v2
+      pv.kubernetes.io/provisioned-by: microk8s.io/hostpath
+    creationTimestamp: "2022-09-03T09:39:22Z"
+    finalizers:
+    - kubernetes.io/pv-protection
+    name: pvc-5a1126df-c10b-4bd7-b784-eff9c463fac5
+    resourceVersion: "73719"
+    uid: 36bb1f51-e799-433b-8fca-5d2278599a4b
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 1Gi
+    claimRef:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: test-pvc
+      namespace: test
+      resourceVersion: "73685"
+      uid: 5a1126df-c10b-4bd7-b784-eff9c463fac5
+    hostPath:
+      path: /var/snap/microk8s/common/default-storage/test-test-pvc-pvc-5a1126df-c10b-4bd7-b784-eff9c463fac5
+      type: DirectoryOrCreate
+    nodeAffinity:
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - actionbook-v2
+    persistentVolumeReclaimPolicy: Delete
+    storageClassName: microk8s-hostpath
+    volumeMode: Filesystem
+  status:
+    phase: Bound
+kind: List
+metadata:
+  resourceVersion: ""

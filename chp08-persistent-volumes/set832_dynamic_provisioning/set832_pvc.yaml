@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: quiz-data-default
+  namespace: chp08-set832
+spec:
+  # To enable dynamic provisioning, omit storageClassName field
+  resources:
+    requests: # Volume must provide at least same space as specified PV
+      storage: 100Mi
+  accessModes:
+  - ReadWriteOnce # same as PV
+
+
+
+
+
+
+# For reference, we provision this StorageClass dynamically
+#
+# apiVersion: v1
+# items:
+# - apiVersion: storage.k8s.io/v1
+#   kind: StorageClass
+#   metadata:
+#     annotations:
+#       kubectl.kubernetes.io/last-applied-configuration: |
+#         {"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"true"},"creationTimestamp":"2022-09-02T11:09:24Z","name":"microk8s-hostpath","resourceVersion":"440","uid":"39d5826a-7a69-490f-9abc-772815387743"},"provisioner":"microk8s.io/hostpath","reclaimPolicy":"Delete","volumeBindingMode":"WaitForFirstConsumer"}
+#       storageclass.kubernetes.io/is-default-class: "true"
+#     creationTimestamp: "2022-09-02T11:09:24Z"
+#     name: microk8s-hostpath
+#     resourceVersion: "43363"
+#     uid: 39d5826a-7a69-490f-9abc-772815387743
+#   provisioner: microk8s.io/hostpath
+#   reclaimPolicy: Delete
+#   volumeBindingMode: WaitForFirstConsumer
+# kind: List
+# metadata:
+#   resourceVersion: ""
