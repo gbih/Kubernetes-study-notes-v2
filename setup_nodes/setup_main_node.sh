@@ -10,7 +10,20 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 #####################
 
 # Note we cannot use underbars _ in the multipass instance name, we are limited to a dash -
+#VM='actionbook-v1'
 VM='actionbook-v2'
+
+if [ $DOCKER_USER == "" ] 
+then
+	echo 'DOCKER_USER not set'
+	exit
+fi
+
+if [ $DOCKER_PWD == "" ] 
+then
+	echo 'DOCKER_PWD not set'
+	exit
+fi
 
 echo $HR2
 
@@ -65,7 +78,7 @@ multipass exec $VM -- bash -c "sudo microk8s status --wait-ready"
 echo $HR
 
 echo "Turn on the services you want"
-multipass exec $VM -- bash -c "sudo microk8s enable dns storage ingress metallb:10.64.150.43-10.64.150.49"
+multipass exec $VM -- bash -c "sudo microk8s enable dns hostpath-storage openebs ingress metallb:10.64.150.53-10.64.150.59"
 multipass exec $VM -- bash -c "sudo microk8s status --wait-ready"
 echo $HR
 
@@ -93,7 +106,8 @@ echo $HR
 
 echo "Install Python stuff"
 echo "Transfer requirements file from host to vm:"
-multipass transfer ./requirements.txt $VM:/home/ubuntu/src/
+multipass exec $VM -- bash -c "sudo chmod a+wrx /home/ubuntu/src/"
+multipass transfer ./requirements.txt $VM:/home/ubuntu/src/requirements.txt
 multipass exec $VM -- bash -c "sudo apt install python3-pip -y"
 multipass exec $VM -- bash -c "pip3 install -r /home/ubuntu/src/requirements.txt"
 echo $HR
