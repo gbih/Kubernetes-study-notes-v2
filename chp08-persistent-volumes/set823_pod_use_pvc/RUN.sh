@@ -4,32 +4,17 @@ FULLPATH=$(pwd)
 
 echo $HR_TOP
 
-echo "kubectl apply -f $FULLPATH/set823_namespace.yaml"
-kubectl apply -f $FULLPATH/set823_namespace.yaml
+echo "Use a claim and volume in a single pod."
+
 echo $HR
 
-echo "kubectl apply -f $FULLPATH/set823_pod.yaml"
+kubectl apply -f $FULLPATH/set823_namespace.yaml
 kubectl apply -f $FULLPATH/set823_pod.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set823_pv_quizdata.yaml"
 kubectl apply -f $FULLPATH/set823_pv_quizdata.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set823_pv_otherdata.yaml"
 kubectl apply -f $FULLPATH/set823_pv_otherdata.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set823_pvc.yaml"
 kubectl apply -f $FULLPATH/set823_pvc.yaml
-echo $HR 
 
-# Still not possible to pass arbitrary jsonpath to kubectl wait?
-# https://github.com/kubernetes/kubernetes/issues/83094
-# echo "Check status of pv/quiz-data"
-# kubectl get pv/quiz-data --output=jsonpath='{.status.phase}'
-# echo ""
-# echo $HR
+echo $HR 
 
 echo "Wait for PV quiz-data status to be Available or Bound:"
 until kubectl get pv/quiz-data --output=jsonpath='{.status.phase}' | grep -E "Available|Bound"; do : echo "PV Status: " kubectl get pv/quiz-data --output=jsonpath='{.status.phase}'; done

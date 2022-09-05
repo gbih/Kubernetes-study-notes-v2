@@ -54,6 +54,20 @@ echo $HR
 
 #####
 
+echo "Check the StorageClass used. In particular, pay attention to the 'volumeBindingMode' field:"
+echo "kubectl get sc"
+kubectl get sc
+echo $HR
+
+echo "kubectl get sc -o yaml"
+kubectl get sc -o yaml
+echo $HR
+
+echo "kubectl get sc -o=jsonpath='{.items[0].volumeBindingMode}'"
+kubectl get sc -o=jsonpath='{.items[0].volumeBindingMode}'
+enter
+#####
+
 echo "kubectl get pv"
 kubectl get pv
 enter

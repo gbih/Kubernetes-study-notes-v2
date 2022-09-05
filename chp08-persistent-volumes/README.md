@@ -8,11 +8,74 @@
 - Dynamic provisioning of persistent volumes
 - Using node-local persistent storage
 
+
 ### Notes
+
+**Using storage vs openebs to provision PersistentVolumes in microk8s:**
 
 https://github.com/canonical/microk8s/issues/2618#issuecomment-931988032
 
-The storage addon (microk8s enable storage) is not meant to be used in multi-node clusters. On a multi-node cluster storage is expected to be provided by an external to k8s service. Maybe you may want to look at openebs [1] for which we also have an addon [2].
+* The storage addon (microk8s enable storage) is not meant to be used in multi-node clusters. 
+* On a multi-node cluster storage is expected to be provided by an external to k8s service. 
 
-[1] https://docs.openebs.io/
-[2] https://microk8s.io/docs/addon-openebs
+
+For latest version of microk8s:
+
+```
+microk8s enable openebs
+```
+
+
+For microk8s v1.19:
+
+```
+sudo systemctl enable iscsid
+microk8s enable community
+microk8s enable openebs
+```
+
+
+References:
+
+* https://docs.openebs.io/
+* https://microk8s.io/docs/addon-openebs
+
+---
+
+**The openebs addon includes the following StorageClass:**
+
+```
+openebs-hostpath
+openebs-jiva-default
+```
+
+* The openebs-hostpath is recommended when using on a laptop or a single node cluster. 
+* Use openebs-jiva-default StorageClass for multi-node cluster.
+
+
+Note: Using openebs-jiva-default requires having 3 replicas.
+
+Using OpenEBS is as easy as creating a PersistentVolumeClaim.
+
+---
+
+**On a single node MicroK8s:**
+
+When using OpenEBS with a single node MicroK8s, it is recommended to use the openebs-hostpath StorageClass
+
+To create a PersistentVolumeClaim utilizing the openebs-hostpath StorageClass
+
+```
+kind: PersistentVolumeClaim 
+apiVersion: v1
+metadata:
+  name: local-hostpath-pvc
+spec:
+  storageClassName: openebs-hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5G
+```
+

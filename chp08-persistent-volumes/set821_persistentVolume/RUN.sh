@@ -4,21 +4,12 @@ FULLPATH=$(pwd)
 
 echo $HR_TOP
 
-echo "kubectl apply -f $FULLPATH/set821_namespace.yaml"
 kubectl apply -f $FULLPATH/set821_namespace.yaml
-echo $HR
-
-echo "kubectl apply -f $FULLPATH/set821_pod.yaml"
 kubectl apply -f $FULLPATH/set821_pod.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set821_pv_quizdata.yaml"
 kubectl apply -f $FULLPATH/set821_pv_quizdata.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set821_pv_otherdata.yaml"
 kubectl apply -f $FULLPATH/set821_pv_otherdata.yaml
-echo $HR 
+
+echo $HR
 
 # Still not possible to pass arbitrary jsonpath to kubectl wait?
 # https://github.com/kubernetes/kubernetes/issues/83094
@@ -39,9 +30,16 @@ echo "kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set821 --timeou
 kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set821 --timeout=120s
 echo $HR
 
-echo "kubectl get all -n=chp08-set821 -o wide"
-kubectl get all -n=chp08-set821 -o wide
+echo "kubectl describe pods/quiz -n=chp08-set821"
+kubectl describe pods/quiz -n=chp08-set821
+enter
+
+echo "kubectl describe pv/quiz-data"
+kubectl describe pv/quiz-data
 echo $HR
+
+echo "Press [ENTER] to delete objects"
+enter
 
 echo "kubectl delete pv quiz-data"
 kubectl delete pv quiz-data

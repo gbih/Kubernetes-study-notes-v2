@@ -4,26 +4,17 @@ FULLPATH=$(pwd)
 
 echo $HR_TOP
 
-echo "kubectl apply -f $FULLPATH/set822_namespace.yaml"
+echo "This cluster has two PVs. Before the quiz pod can use the quiz-data volume, we need to claim it, via a PVC."
+
+echo $HR 
+
 kubectl apply -f $FULLPATH/set822_namespace.yaml
-echo $HR
-
-echo "kubectl apply -f $FULLPATH/set822_pod.yaml"
 kubectl apply -f $FULLPATH/set822_pod.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set822_pv_quizdata.yaml"
 kubectl apply -f $FULLPATH/set822_pv_quizdata.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set822_pv_otherdata.yaml"
 kubectl apply -f $FULLPATH/set822_pv_otherdata.yaml
-echo $HR 
-
-echo "kubectl apply -f $FULLPATH/set822_pvc.yaml"
 kubectl apply -f $FULLPATH/set822_pvc.yaml
-echo $HR 
 
+echo $HR
 
 # Still not possible to pass arbitrary jsonpath to kubectl wait?
 # https://github.com/kubernetes/kubernetes/issues/83094
@@ -40,6 +31,14 @@ kubectl get pv -o wide
 
 enter
 
+value=$(<set822_pvc.yaml)
+echo "Check the PVC yaml file:"
+echo ""
+echo "$value"
+enter
+
+
+
 echo "Wait for PVC status to be Bound:"
 until kubectl get pvc/quiz-data -n=chp08-set822 --output=jsonpath='{.status.phase}' | grep "Bound"; do : kubectl get pvc/quiz-data -n=chp08-set822 --output=jsonpath='{.status.phase}' ; done
 echo $HR 
@@ -51,6 +50,11 @@ echo $HR
 
 echo "kubectl describe pvc/quiz-data -n=chp08-set822"
 kubectl describe pvc -n=chp08-set822
+
+enter
+
+echo "kubectl get pvc/quiz-data -n=chp08-set822 -o yaml"
+kubectl get pvc/quiz-data -n=chp08-set822 -o yaml
 
 enter
 

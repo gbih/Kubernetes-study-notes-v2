@@ -12,7 +12,11 @@
 
 * StorageClass objects have no spec or status sections. This is because the object only contains static information. 
 
-* In microk8s clusters, the provisioner of the PV is `microk8s.io/hostpath`.
+* In microk8s clusters, we can use several provisioners for the PV:
+	* `microk8s-hostpath (default)`
+	* `openebs-jiva-csi-default`
+	* `openebs-hostpath`
+	* `openebs-device`
 
 * A StorageClass object represents a class of storage that can be dynamically provisioned. 
 
