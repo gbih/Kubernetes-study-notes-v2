@@ -1,10 +1,7 @@
-# 8.3.2 Dynamic provisioning using the default storage class
+# 8.3.3 Creating a storage class and provisioning volumes of that class
 
 ### Objective
 
-1. Explore dynamic provisioning using the default storage class
+1. Explore using a customized StorageClass object
 
-### Notes
-
-* We don't have to manually provision any PersistentVolumes here.
 
