@@ -14,6 +14,20 @@ VM='actionbook-v2'
 
 echo $HR2
 
+if [ $DOCKER_USER == "" ] 
+then
+	echo 'DOCKER_USER not set'
+	exit
+fi
+
+if [ $DOCKER_PWD == "" ] 
+then
+	echo 'DOCKER_PWD not set'
+	exit
+fi
+
+echo $HR
+
 #####################
 echo "Make sure to create and use environmental variables for docker account."
 echo "For example, on the host CLI:"
@@ -28,7 +42,7 @@ echo "In your script"
 echo "$DOCKER_USER"
 echo "$DOCKER_PWD"
 
-echo "Assuming we pass docker username and passwd as environmental variables"
-multipass list
-multipass exec $VM -- bash -c "sudo docker login --username $DOCKER_USER --password $DOCKER_PWD"
-echo $HR
+# echo "Assuming we pass docker username and passwd as environmental variables"
+# multipass list
+# multipass exec $VM -- bash -c "sudo docker login --username $DOCKER_USER --password $DOCKER_PWD"
+# echo $HR
