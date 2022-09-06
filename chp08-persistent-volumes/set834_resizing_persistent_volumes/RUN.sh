@@ -67,11 +67,6 @@ echo "kubectl apply -f $FULLPATH/set834_namespace.yaml"
 kubectl apply -f $FULLPATH/set834_namespace.yaml
 echo $HR
 
-echo "kubectl apply -f $FULLPATH/set834_sc_microk8syaml"
-kubectl apply -f $FULLPATH/set834_sc_microk8s.yaml
-echo $HR
-
-
 echo "kubectl apply -f $FULLPATH/set834_pvc.yaml"
 kubectl apply -f $FULLPATH/set834_pvc.yaml
 echo $HR 
