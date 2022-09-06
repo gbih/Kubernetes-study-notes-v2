@@ -15,7 +15,7 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 node_worker='worker1'
 
 # Define main node
-node_main='actionbook-v2'
+node_main='main'
 
 echo "node_worker: $node_worker"
 echo "main node: $node_main"

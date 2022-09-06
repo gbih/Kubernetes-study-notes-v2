@@ -12,7 +12,7 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 # We cannot use underbars _ in the multipass instance name, we are limited to a dash -
 
 # Define main node
-node_main='actionbook-v2'
+node_main='main'
 
 # Define worker node
 node_worker='worker1'

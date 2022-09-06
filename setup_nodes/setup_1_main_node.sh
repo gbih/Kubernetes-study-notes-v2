@@ -11,7 +11,9 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 
 # Note we cannot use underbars _ in the multipass instance name, we are limited to a dash -
 #VM='actionbook-v1'
-VM='actionbook-v2'
+#VM='actionbook-v2'
+VM='main'
+
 
 if [ $DOCKER_USER == "" ] 
 then
@@ -122,14 +124,6 @@ echo "Docker test"
 multipass exec $VM -- bash -c "sudo usermod -aG docker ubuntu"
 multipass exec $VM -- bash -c "docker run busybox echo 'Hello world'"
 multipass exec $VM -- bash -c "sudo microk8s status --wait-ready"
-echo $HR
-
-echo "Install Python stuff"
-echo "Transfer requirements file from host to vm:"
-#multipass exec $VM -- bash -c "sudo chmod a+wrx /home/ubuntu/src/"
-multipass transfer ./requirements.txt $VM:/home/ubuntu/src/working/requirements.txt
-multipass exec $VM -- bash -c "sudo apt install python3-pip -y"
-multipass exec $VM -- bash -c "pip3 install -r /home/ubuntu/src/working/requirements.txt"
 echo $HR
 
 #####################
