@@ -19,5 +19,5 @@ spec:
           operator: In
           values:
           # SSD is attached to the node actionbook-v2
-          - actionbook-v2
-          # - worker1
+          #- actionbook-v2
+          - worker1
