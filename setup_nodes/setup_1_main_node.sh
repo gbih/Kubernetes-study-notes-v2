@@ -59,7 +59,6 @@ echo $HR
 # Install Microk8s Kubernetes distribution
 
 echo "Install microk8s"
-# multipass exec $VM -- bash -c "sudo snap install microk8s --classic --channel=1.19/stable"
 multipass exec $VM -- bash -c "sudo snap install microk8s --classic"
 echo $HR
 
@@ -88,7 +87,18 @@ multipass exec $VM -- bash -c "sudo microk8s status --wait-ready"
 echo $HR
 
 echo "Turn on the services you want"
-multipass exec $VM -- bash -c "sudo microk8s enable dns hostpath-storage openebs ingress metallb:10.64.150.53-10.64.150.59"
+# multipass exec $VM -- bash -c "sudo microk8s enable dns hostpath-storage openebs ingress metallb:10.64.150.53-10.64.150.59"
+multipass exec $VM -- bash -c "sudo microk8s enable dns"
+multipass exec $VM -- bash -c "sudo microk8s enable hostpath-storage"
+multipass exec $VM -- bash -c "sudo microk8s enable ingress"
+multipass exec $VM -- bash -c "sudo microk8s enable metallb:10.64.150.53-10.64.150.59"
+
+# Need to add openebs, https://microk8s.io/docs/addon-openebs
+multipass exec $VM -- bash -c "sudo microk8s enable community"
+multipass exec $VM -- bash -c "sudo systemctl enable iscsid"
+multipass exec $VM -- bash -c "sudo microk8s enable openebs"
+
+echo "Check status of microk8s"
 multipass exec $VM -- bash -c "sudo microk8s status --wait-ready"
 echo $HR
 
