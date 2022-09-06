@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kubernetes in Action Demo Application v{{version}}</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div id="background"></div>
+<div id="cover"><img src="cover.png" alt="Kubernetes in Action Book Cover"></div>
+
+<div id="content">
+    <div class="bubble">
+        <p>Request processed by <b>Kiada {{version}}</b> running in pod <b>{{podName}}</b> on node <b>{{nodeName}}</b>.<br>
+            Pod hostname: <b>{{hostname}}</b>; Pod IP: <b>{{podIP}}</b>; Node IP: <b>{{nodeIP}}</b>; Client IP: <b>{{clientIP}}</b></p>
+        <p>{{statusMessage}}</p>
+    </div>
+</div>
+
+</body>
+</html>
