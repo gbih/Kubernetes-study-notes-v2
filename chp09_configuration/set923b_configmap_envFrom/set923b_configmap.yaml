@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiada-config
+  namespace: chp09-set923b
+data:
+  status-message: This status message is set in the kiada-config config map.
+  test1: This is test1
+  test2: This is test2
+  sleep-interval: "23"
+  foo: "foo-value"
+  bar: "bar-value"
+  foo-bar: "foo-bar value"
+  author: "George Baptista"
+  email: "george@omame.com"
