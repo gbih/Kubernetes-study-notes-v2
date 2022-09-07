@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiada-config-yaml
+  namespace: chp09-set925
+data:
+  status-message: THIS IS A NEW MESSAGE
+  

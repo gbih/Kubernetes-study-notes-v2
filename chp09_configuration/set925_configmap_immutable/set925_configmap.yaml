@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiada-config-yaml
+  namespace: chp09-set925
+data:
+  status-message: This status message is set in the kiada-config config map.
+immutable: true
+  
