@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kiada-ssl
+  namespace: chp09-set924b
+spec:
+  volumes:
+  # Definition of the configMap volume
+  - name: envoy-config
+    configMap:
+      name: kiada-envoy-config
+      # Specifying which config map entries to include into a configMap volume
+      items:
+      - key: envoy.yaml
+        path: envoy.yaml
+
+  containers:
+  - name: kiada
+    image: luksa/kiada:0.4
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+  - name: envoy
+    image: luksa/kiada-ssl-proxy:0.1
+    imagePullPolicy: Always
+    # Mount volume into the container
+    volumeMounts:
+    - name: envoy-config
+      mountPath: /etc/envoy
+      readOnly: true
+    ports:
+    - name: https
+      containerPort: 8443
+    - name: admin
+      containerPort: 9901
