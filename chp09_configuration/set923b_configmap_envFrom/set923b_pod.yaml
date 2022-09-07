@@ -12,7 +12,8 @@ spec:
     - name: POD_NAME
       value: kiada
     envFrom:
-    - configMapRef:
+    - prefix: CONFIG_
+      configMapRef:
         name: kiada-config
         optional: true
     ports:
