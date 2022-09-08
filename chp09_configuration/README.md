@@ -9,3 +9,7 @@
 - Storing sensitive information in secrets
 - Using the Downward API to expose pod metadata to the application
 - Using configMap, secret, downwardAPI and projected volumes
+
+### Notes
+
+Overall aim is to learn how three special volume types can be used to inject values from config maps, secrets and the Pod object itself. 
