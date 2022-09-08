@@ -7,6 +7,10 @@ echo $HR_TOP
 echo "Note: Run this while logged into the main node."
 echo $HR 
 
+echo "kubectl get nodes -o wide"
+kubectl get nodes -o wide
+echo $HR 
+
 echo "kubectl apply -f $FULLPATH/cluster-test_namespace.yaml"
 kubectl apply -f $FULLPATH/cluster-test-namespace.yaml
 echo $HR
