@@ -15,25 +15,25 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 VM='main'
 
 
-if [ $DOCKER_USER == "" ] 
-then
-	echo 'DOCKER_USER not set'
-	echo "On the cli, run:"
-	echo "DOCKER_USER=..."
-	echo "export DOCKER_USER"
-	exit
-fi
+# if [ $DOCKER_USER=="" ] 
+# then
+# 	echo 'DOCKER_USER not set'
+# 	echo "On the cli, run:"
+# 	echo "DOCKER_USER=..."
+# 	echo "export DOCKER_USER"
+# 	exit
+# fi
 
-if [ $DOCKER_PWD == "" ] 
-then
-	echo 'DOCKER_PWD not set'
-	echo "On the cli, run:"
-	echo "DOCKER_PWD=..."
-	echo "export DOCKER_PWD"
-	exit
-fi
+# if [ $DOCKER_PWD=="" ] 
+# then
+# 	echo 'DOCKER_PWD not set'
+# 	echo "On the cli, run:"
+# 	echo "DOCKER_PWD=..."
+# 	echo "export DOCKER_PWD"
+# 	exit
+# fi
 
-echo $HR2
+# echo $HR2
 
 #####################
 
@@ -48,7 +48,7 @@ multipass list
 echo $HR
 
 
-echo "multipass launch --name $VM --disk 50G --cpus 2 --mem 6G"
+echo "multipass launch --name $VM --disk 50G --cpus 1 --mem 6G"
 multipass launch --name $VM --disk 50G --cpus 1 --mem 6G
 echo $HR
 
