@@ -49,7 +49,7 @@ echo $HR
 
 
 echo "multipass launch --name $VM --disk 50G --cpus 2 --mem 6G"
-multipass launch --name $VM --disk 50G --cpus 2 --mem 6G
+multipass launch --name $VM --disk 50G --cpus 1 --mem 6G
 echo $HR
 
 echo "Check info"
