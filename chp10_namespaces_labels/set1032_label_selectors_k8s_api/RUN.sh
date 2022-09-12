@@ -89,10 +89,7 @@ kubectl get pvc ssd-claim-set -n=chp10-set1032 --show-labels
 echo $HR
 
 
-
-
-
-# echo "kubectl delete ns chp10-set1032"
-# kubectl delete ns chp10-set1032
+echo "kubectl delete ns chp10-set1032"
+kubectl delete ns chp10-set1032
 
 echo $HR_TOP
