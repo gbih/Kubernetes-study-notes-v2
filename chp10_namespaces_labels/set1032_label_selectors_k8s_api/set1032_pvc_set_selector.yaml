@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ssd-claim-set
+  namespace: chp10-set1032
+spec:
+  selector:
+    matchExpressions:
+    - key: type
+      operator: NotIn
+      values: 
+      - ssd
+    - key: age
+      operator: In 
+      values:
+      - old
+      - very-old
+
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  storageClassName: ""
