@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kiada
+  namespace: chp10-set1011
+spec:
+  containers:
+  - name: kiada
+    image: georgebaptista/kiada:0.4
+    imagePullPolicy: Always
+    args: ["--listen-port", "9090"]
+    ports:
+    - name: http
+      containerPort: 9090
