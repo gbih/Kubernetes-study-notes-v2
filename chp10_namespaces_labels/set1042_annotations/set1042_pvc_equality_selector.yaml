@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ssd-claim
+  namespace: chp10-set1042
+spec:
+  selector:
+    matchLabels:
+      type: ssd
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  storageClassName: ""
