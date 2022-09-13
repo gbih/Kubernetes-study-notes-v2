@@ -33,16 +33,17 @@ multipass exec $node_main -- bash -c "kubectl get nodes -o wide"
 
 echo $HR
 
+# If we use the --worker option, can no longer use the 'multipass exec' command
 # Get internal ip of main node
-node_main_ip=$(multipass exec $node_main -- bash -c "kubectl get node $node_main -o jsonpath='{.status.addresses[0].address}'")
+node_main_ip=$(multipass info $node_main | grep IPv4 | cut -d ':' -f 2 | xargs)
 echo "node_main_ip: $node_main_ip"
 
 # Get internal ip of worker1 node
-node_worker1_ip=$(multipass exec $node_worker1 -- bash -c "kubectl get node $node_worker1 -o jsonpath='{.status.addresses[0].address}'")
+node_worker1_ip=$(multipass info $node_worker1 | grep IPv4 | cut -d ':' -f 2 | xargs)
 echo "node_worker1_ip: $node_worker1_ip"
 
 # Get internal ip of worker2 node
-node_worker2_ip=$(multipass exec $node_worker2 -- bash -c "kubectl get node $node_worker2 -o jsonpath='{.status.addresses[0].address}'")
+node_worker2_ip=$(multipass info $node_worker2 | grep IPv4 | cut -d ':' -f 2 | xargs)
 echo "node_worker2_ip: $node_worker2_ip"
 echo $HR
 
