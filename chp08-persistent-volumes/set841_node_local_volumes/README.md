@@ -6,6 +6,8 @@
 
 ### Notes
 
+* This probably cannot be run on a multi-node cluster
+
 1. Locally attached persistent volumes need to be provisioned manually.
 2. This storage class represents locally attached volumes that can only be accessed within the nodes to which they are physically connected.
 

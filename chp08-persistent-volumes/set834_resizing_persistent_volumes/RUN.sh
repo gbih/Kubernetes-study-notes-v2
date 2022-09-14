@@ -81,8 +81,8 @@ echo "kubectl apply -f $FULLPATH/set834_pod-default.yaml"
 kubectl apply -f $FULLPATH/set834_pod-default.yaml
 echo $HR 
 
-echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=120s"
-kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=120s
+echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=360s"
+kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=360s
 echo $HR
 
 enter
@@ -111,8 +111,8 @@ echo "kubectl apply -f $FULLPATH/set834_pod-default.yaml"
 kubectl apply -f $FULLPATH/set834_pod-default.yaml
 echo $HR 
 
-echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=120s"
-kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=120s
+echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=360s"
+kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set834 --timeout=360s
 echo $HR
 
 enter
@@ -136,7 +136,6 @@ echo "PV exists: $PV"
 echo "kubectl patch $PV -p '{"metadata":{"finalizers":null}}'"
 kubectl patch $PV -p '{"metadata":{"finalizers":null}}'
 echo ""
-
 echo "kubectl delete pv $PV --force --grace-period=0"
 kubectl delete $PV --force --grace-period=0
 
