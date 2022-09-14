@@ -12,6 +12,19 @@ target_storage_class='openebs-jiva-csi-default'
 
 #####
 
+
+echo "May need to adjust openebs-jiva-csi-default to modify 'volumeBindingMode: WaitForFirstConsumer'"
+kubectl delete sc openebs-jiva-csi-default
+sleep 0.5
+kubectl apply -f openebs-jiva-csi-default.yaml
+sleep 1
+echo ""
+kubectl get sc openebs-jiva-csi-default
+echo $HR
+
+
+
+
 kubectl get sc | sort
 
 echo $HR 
@@ -53,5 +66,13 @@ then
 else
 	echo "Current StorageClass is already $target_storage_class, no need to change."
 fi
+
+enter
+
+
+echo "Check that the /etc/hosts file on main has been set correctly (has entries for both main and worker nodes)"
+echo ""
+cat /etc/hosts
+
 
 echo $HR_TOP

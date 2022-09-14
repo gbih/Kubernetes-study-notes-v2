@@ -14,3 +14,8 @@
 * Because the PVC lifecycle is not tied to that of the pod, it allows the ownership of the PV to be decoupled from the pod. 
 * Before a user can use a PV in their pods, they must first claim the volume by creating a PVC object.
 * After claiming the volume, the user has exclusive rights to it and can use it in their pods.
+
+
+### Reference
+
+https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/
