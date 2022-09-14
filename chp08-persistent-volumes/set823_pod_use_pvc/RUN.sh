@@ -43,6 +43,15 @@ echo "kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set823 --timeou
 kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set823 --timeout=120s
 echo $HR
 
+
+echo "kubectl describe pod/quiz -n=chp08-set823"
+kubectl describe pod/quiz -n=chp08-set823
+echo $HR
+
+echo "kubectl get events -n=chp08-set823"
+kubectl get events -n=chp08-set823
+echo $HR
+
 echo "kubectl get all -n=chp08-set823 -o wide"
 kubectl get all -n=chp08-set823 -o wide
 echo $HR
