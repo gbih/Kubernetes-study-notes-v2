@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quote-session-affinity
+  namespace: chp11-set1113
+spec:
+  # ClusterIP services are available only within the cluster
+  type: ClusterIP
+  # Specify which pods are part of this service
+  selector:
+    app: quote
+  sessionAffinity: ClientIP
+  ports:
+  - name: http
+    # Port 80 of this service is mapped to port 80 in the pods backing this service
+    port: 80
+    targetPort: 80
+    protocol: TCP
