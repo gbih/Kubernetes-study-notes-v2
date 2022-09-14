@@ -13,7 +13,13 @@
 
 **Using storage vs openebs to provision PersistentVolumes in microk8s:**
 
-https://github.com/canonical/microk8s/issues/2618#issuecomment-931988032
+The default StorageClass `microk8s-hostpath` is a hostpath based storage, and designed for a single node MicroK8s.
+
+For multi node clusters, it is recommended to use a different approach, such as openebs, rook (ceph), portworx, etc.
+
+
+* https://github.com/canonical/microk8s/issues/2618#issuecomment-931988032
+* https://github.com/canonical/microk8s/issues/1597
 
 * The storage addon (microk8s enable storage) is not meant to be used in multi-node clusters. 
 * On a multi-node cluster storage is expected to be provided by an external to k8s service. 
@@ -78,4 +84,34 @@ spec:
     requests:
       storage: 5G
 ```
+
+---
+
+**On a multi node MicroK8s***
+
+
+```
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jiva-volume-claim
+spec:
+  storageClassName: openebs-jiva-csi-default
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5G
+```
+
+---
+
+To check that openebs-ndm on each node is started correctly:
+
+```
+kubectl -n openebs get pods -o wide
+```
+
+
+
 
