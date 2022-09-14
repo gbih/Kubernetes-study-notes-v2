@@ -7,7 +7,6 @@ spec:
   containers:
   - name: kiada
     image: georgebaptista/kiada:0.4
-    imagePullPolicy: Always
     command: 
     - node
     - --cpu-prof
