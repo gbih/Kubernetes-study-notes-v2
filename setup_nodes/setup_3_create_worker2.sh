@@ -33,8 +33,8 @@ echo $HR
 echo "Provision $node_worker with Multipass"
 echo ""
 
-echo "multipass launch --name $node_worker --disk 10G --cpus 1 --mem 1G"
-multipass launch --name $node_worker --disk 10G --cpus 1 --mem 1G
+echo "multipass launch --name $node_worker --disk 30G --cpus 1 --mem 1G"
+multipass launch --name $node_worker --disk 30G --cpus 1 --mem 1G
 echo $HR
 
 echo "Check info"
