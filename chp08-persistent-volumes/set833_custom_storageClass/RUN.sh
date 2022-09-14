@@ -54,6 +54,11 @@ echo $HR
 
 #####
 
+# We assume the default StorageClass is openebs-jiva-csi-default
+kubectl apply -f $FULLPATH/set833_storage_class.yaml
+sleep 1
+echo $HR
+
 echo "Check the StorageClass used. In particular, pay attention to the 'volumeBindingMode' field:"
 echo "kubectl get sc"
 kubectl get sc
@@ -66,6 +71,7 @@ echo $HR
 echo "kubectl get sc fast -o=jsonpath='{.items[0].volumeBindingMode}'"
 kubectl get sc fast -o=jsonpath='{.items[0].volumeBindingMode}'
 enter
+
 #####
 
 echo "kubectl get pv"
@@ -74,7 +80,6 @@ enter
 
 
 kubectl apply -f $FULLPATH/set833_namespace.yaml
-kubectl apply -f $FULLPATH/set833_storage_class.yaml
 kubectl apply -f $FULLPATH/set833_pvc.yaml
 
 echo $HR 
@@ -98,8 +103,8 @@ echo "kubectl apply -f $FULLPATH/set833_pod-default.yaml"
 kubectl apply -f $FULLPATH/set833_pod-default.yaml
 echo $HR 
 
-echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set833 --timeout=120s"
-kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set833 --timeout=120s
+echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set833 --timeout=360s"
+kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set833 --timeout=360s
 echo $HR
 
 enter
@@ -132,10 +137,5 @@ echo "PV exists: $PV"
 echo "kubectl patch $PV -p '{"metadata":{"finalizers":null}}'"
 kubectl patch $PV -p '{"metadata":{"finalizers":null}}'
 echo ""
-# echo "kubectl delete pv $PV"
-# kubectl delete $PV
-echo "kubectl delete pv $PV --force --grace-period=0"
-kubectl delete $PV --force --grace-period=0
-
 
 echo $HR_TOP

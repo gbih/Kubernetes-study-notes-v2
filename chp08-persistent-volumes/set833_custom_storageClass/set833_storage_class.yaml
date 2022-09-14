@@ -1,12 +1,15 @@
+# If you’re using Minikube or kind, and you’d like to run this example, 
+# set the provisioner and parameters to the same values as in the default storage class. 
+# For this exercise, it doesn’t matter if the provisioned volume doesn’t actually use an SSD.
+
+allowVolumeExpansion: true
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: fast
-  # StorageClass are not namespaced
-  labels:
-    app: test
-# volume plugin to use for provisioning the PV
-provisioner: microk8s.io/hostpath
 parameters:
-  # parameters passed to the provisioner
+  cas-type: jiva
   type: ps-ssd
+provisioner: jiva.csi.openebs.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
