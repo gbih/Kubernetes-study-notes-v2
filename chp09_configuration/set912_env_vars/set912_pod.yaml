@@ -7,7 +7,7 @@ spec:
   containers:
   - name: kiada
     image: georgebaptista/kiada:0.4
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     args:
     - --listen_port
     - $(LISTEN_PORT)
