@@ -12,13 +12,13 @@ spec:
   containers:
   - name: kiada
     image: luksa/kiada:0.4
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     ports:
     - name: http
       containerPort: 8080
   - name: envoy
     image: luksa/kiada-ssl-proxy:0.1
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
 
     # Mount volume into the container
     volumeMounts:
