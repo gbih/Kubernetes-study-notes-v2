@@ -59,14 +59,7 @@ echo "kubectl get sc"
 kubectl get sc
 echo $HR
 
-echo "kubectl get sc -o yaml"
-kubectl get sc -o yaml
-echo $HR
 
-echo "kubectl get sc -o=jsonpath='{.items[0].volumeBindingMode}'"
-kubectl get sc -o=jsonpath='{.items[0].volumeBindingMode}'
-enter
-#####
 
 echo "kubectl get pv"
 kubectl get pv
@@ -124,6 +117,10 @@ enter
 
 #####
 
+echo "kubectl delete pvc --all -n=chp08-set833" 
+kubectl delete pvc --all -n=chp08-set833 
+echo $HR
+
 echo "kubectl delete ns chp08-set832"
 kubectl delete ns chp08-set832
 echo $HR
@@ -133,8 +130,6 @@ echo "PV exists: $PV"
 echo "kubectl patch $PV -p '{"metadata":{"finalizers":null}}'"
 kubectl patch $PV -p '{"metadata":{"finalizers":null}}'
 echo ""
-# echo "kubectl delete pv $PV"
-# kubectl delete $PV
 echo "kubectl delete pv $PV --force --grace-period=0"
 kubectl delete $PV --force --grace-period=0
 
