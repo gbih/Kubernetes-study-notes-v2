@@ -5,7 +5,6 @@ FULLPATH=$(pwd)
 echo $HR_TOP
 
 kubectl apply -f $FULLPATH/set821_namespace.yaml
-kubectl apply -f $FULLPATH/set821_pod.yaml
 kubectl apply -f $FULLPATH/set821_pv_quizdata.yaml
 kubectl apply -f $FULLPATH/set821_pv_otherdata.yaml
 
@@ -26,29 +25,18 @@ kubectl get pv -o wide
 
 enter
 
-echo "kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set821 --timeout=120s"
-kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set821 --timeout=120s
-echo $HR
-
-echo "kubectl describe pods/quiz -n=chp08-set821"
-kubectl describe pods/quiz -n=chp08-set821
-enter
-
 echo "kubectl describe pv/quiz-data"
 kubectl describe pv/quiz-data
-echo $HR
 
-echo "kubectl get events -n=chp08-set821"
-kubectl get events -n=chp08-set821
+enter
+
+echo "kubectl explain pv.spec"
+kubectl explain pv.spec
 
 enter_delete
 
-echo "kubectl delete pv quiz-data"
-kubectl delete pv quiz-data
-echo $HR
-
-echo "kubectl delete pv other-data"
-kubectl delete pv other-data
+echo "kubectl delete $(kubectl get pv -o name)"
+kubectl delete $(kubectl get pv -o name)
 echo $HR
 
 echo "kubectl delete ns chp08-set821"

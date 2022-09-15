@@ -15,17 +15,3 @@
 * Before a user can use a PV in their pods, they must first claim the volume by creating a PVC object.
 * After claiming the volume, the user has exclusive rights to it and can use it in their pods.
 
-### Events
-
-```
-kubectl get events -n=chp08-set821
-
-LAST SEEN   TYPE     REASON      OBJECT     MESSAGE
-15s         Normal   Scheduled   pod/quiz   Successfully assigned chp08-set821/quiz to worker1
-13s         Normal   Pulled      pod/quiz   Container image "luksa/quiz-api:0.1" already present on machine
-13s         Normal   Created     pod/quiz   Created container quiz-api
-12s         Normal   Started     pod/quiz   Started container quiz-api
-12s         Normal   Pulled      pod/quiz   Container image "mongo:5" already present on machine
-12s         Normal   Created     pod/quiz   Created container mongo
-12s         Normal   Started     pod/quiz   Started container mongo
-```
