@@ -44,13 +44,13 @@ kubectl wait --for=condition=Ready=True pods/quiz -n=chp08-set823 --timeout=120s
 echo $HR
 
 
-echo "kubectl describe pod/quiz -n=chp08-set823"
-kubectl describe pod/quiz -n=chp08-set823
-echo $HR
+# echo "kubectl describe pod/quiz -n=chp08-set823"
+# kubectl describe pod/quiz -n=chp08-set823
+# echo $HR
 
-echo "kubectl get events -n=chp08-set823"
-kubectl get events -n=chp08-set823
-echo $HR
+# echo "kubectl get events -n=chp08-set823"
+# kubectl get events -n=chp08-set823
+# echo $HR
 
 echo "kubectl get all -n=chp08-set823 -o wide"
 kubectl get all -n=chp08-set823 -o wide
@@ -126,10 +126,6 @@ echo $HR
 enter
 
 echo "Verify data still exists in the Mongo DB and the Quiz API"
-# echo 'kubectl exec -n=chp08-set823 quiz -c mongo -- mongosh kiada --quiet --eval "db.questions.find()"'
-# kubectl exec -n=chp08-set823 quiz -c mongo -- mongosh kiada --quiet --eval "db.questions.find()"
-# echo $HR
-
 echo 'kubectl exec -n=chp08-set823 quiz -c mongo -- mongosh kiada --quiet --eval "db.questions.countDocuments()"'
 kubectl exec -n=chp08-set823 quiz -c mongo -- mongosh kiada --quiet --eval "db.questions.countDocuments()"
 echo $HR
@@ -139,7 +135,7 @@ IP=$(kubectl get pod -n=chp08-set823 -o jsonpath='{.items[0].status.podIP}')
 echo $IP
 echo $HR
 
-echo "retrieve a random question through the Quiz API:"
+echo "Retrieve a random question through the Quiz API:"
 for i in {1..1}
 do
 	echo "curl $IP:8080/questions/random"
@@ -148,7 +144,6 @@ do
 	sleep 1
 done
 
-echo $HR
 
 echo "kubectl get event -n=chp08-set823"
 kubectl get event -n=chp08-set823
@@ -159,21 +154,7 @@ echo "kubectl delete ns chp08-set823"
 kubectl delete ns chp08-set823
 echo $HR
 
-echo "kubectl delete pv quiz-data --grace-period=10 "
-kubectl delete pv quiz-data --grace-period=10
-echo $HR
-
-echo "kubectl delete pv other-data --grace-period=10"
-kubectl delete pv other-data --grace-period=10 
-echo $HR
-
-echo "Check the underlying storage on the worker node:"
-echo "ls -la /var/quiz-data"
-ls -la /var/quiz-data
-echo $HR
-
-echo "Delete this underlying storage"
-echo "sudo rm -fr /var/quiz-data"
-sudo rm -fr /var/quiz-data
+echo "kubectl delete $(kubectl get pv -o name)"
+kubectl delete $(kubectl get pv -o name)
 
 echo $HR_TOP
