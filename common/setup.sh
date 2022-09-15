@@ -12,6 +12,15 @@ enter () {
   echo $HR
 }
 
+enter_delete () {
+  echo ""
+  read -p "** Press ENTER to delete objects in this namespace **"
+  tput reset # non-destructive clearing of screen, can still scroll back up
+
+  echo $HR
+}
+
+
 enter_no_clear () {
   echo ""
   read -p "[[ Press ENTER to continue ]]"
