@@ -14,6 +14,5 @@ echo $HR
 
 ./setup_1_create_main.sh && \
 ./setup_2_create_worker1.sh && \
-./setup_3_create_worker2.sh && \
 ./setup_4_join_workers.sh && \
 ./setup_5_pip_installs.sh
