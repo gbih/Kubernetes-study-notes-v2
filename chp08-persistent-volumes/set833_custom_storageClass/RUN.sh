@@ -68,10 +68,6 @@ echo "kubectl get sc fast -o yaml"
 kubectl get sc fast -o yaml
 echo $HR
 
-echo "kubectl get sc fast -o=jsonpath='{.items[0].volumeBindingMode}'"
-kubectl get sc fast -o=jsonpath='{.items[0].volumeBindingMode}'
-enter
-
 #####
 
 echo "kubectl get pv"
@@ -83,8 +79,6 @@ kubectl apply -f $FULLPATH/set833_namespace.yaml
 kubectl apply -f $FULLPATH/set833_pvc.yaml
 
 echo $HR 
-
-enter
 
 echo "In a microk8s cluster, the persistent volume claim we create here is not bound immediately, and its status should be 'Pending'."
 echo "Here, our claim will remain in the Pending state until we create a pod that uses this claim."
@@ -113,7 +107,7 @@ echo "We now should have a dynamically provisioned PV:"
 echo ""
 echo "kubectl get pv"
 kubectl get pv
-enter
+echo $HR
 
 echo "kubectl describe pv"
 kubectl describe pv
@@ -121,21 +115,11 @@ enter
 
 echo "kubectl get events -n=chp08-set833"
 kubectl get events -n=chp08-set833
-echo $HR
 
-echo "Press enter to delete objects"
-enter
-
-#####
+enter_delete
 
 echo "kubectl delete ns chp08-set833"
 kubectl delete ns chp08-set833
 echo $HR
-
-PV=$(kubectl get pv -o=name)
-echo "PV exists: $PV"
-echo "kubectl patch $PV -p '{"metadata":{"finalizers":null}}'"
-kubectl patch $PV -p '{"metadata":{"finalizers":null}}'
-echo ""
 
 echo $HR_TOP
