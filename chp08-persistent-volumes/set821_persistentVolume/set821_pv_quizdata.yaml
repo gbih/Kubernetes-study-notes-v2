@@ -5,7 +5,7 @@ metadata:
   # No namespace for PVs
 spec:
   capacity:
-    storage: 1Gi
+    storage: 100Mi # 1Gi
   accessModes:
     - ReadWriteOnce # single client, R+W
     - ReadOnlyMany # multiple clients, R

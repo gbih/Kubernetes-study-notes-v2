@@ -38,8 +38,10 @@ echo "kubectl describe pv/quiz-data"
 kubectl describe pv/quiz-data
 echo $HR
 
-echo "Press [ENTER] to delete objects"
-enter
+echo "kubectl get events -n=chp08-set821"
+kubectl get events -n=chp08-set821
+
+enter_delete
 
 echo "kubectl delete pv quiz-data"
 kubectl delete pv quiz-data
