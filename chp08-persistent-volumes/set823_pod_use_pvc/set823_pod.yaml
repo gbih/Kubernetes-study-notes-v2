@@ -11,13 +11,14 @@ spec:
       claimName: quiz-data
   containers:
   - name: quiz-api
-    image: georgebaptista/quiz-api
-    imagePullPolicy: Always
+    image: luksa/quiz-api:0.1
+    imagePullPolicy: IfNotPresent
     ports:
     - name: http
       containerPort: 8080
   - name: mongo
     image: mongo:5
+    imagePullPolicy: IfNotPresent
     # Mount the volume the same way other volume types are mounted
     volumeMounts:
     - name: quiz-data

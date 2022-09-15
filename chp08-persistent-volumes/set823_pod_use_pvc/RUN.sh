@@ -148,7 +148,12 @@ do
 	sleep 1
 done
 
-enter
+echo $HR
+
+echo "kubectl get event -n=chp08-set823"
+kubectl get event -n=chp08-set823
+
+enter_delete
 
 echo "kubectl delete ns chp08-set823"
 kubectl delete ns chp08-set823
