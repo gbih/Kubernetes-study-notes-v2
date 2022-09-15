@@ -66,6 +66,11 @@ echo "kubectl get all -n=chp08-set822 -o wide"
 kubectl get all -n=chp08-set822 -o wide
 echo $HR
 
+echo "kubectl get events -n=chp08-set822"
+kubectl get events -n=chp08-set822
+
+enter_delete
+
 echo "kubectl delete pvc quiz-data -n=chp08-set822"
 kubectl delete pvc quiz-data -n=chp08-set822
 echo $HR
@@ -77,8 +82,6 @@ echo $HR
 echo "kubectl delete pv other-data"
 kubectl delete pv other-data
 echo $HR
-
-
 
 echo "kubectl delete ns chp08-set822"
 kubectl delete ns chp08-set822
