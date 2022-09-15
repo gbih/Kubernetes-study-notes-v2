@@ -10,9 +10,9 @@
 ```
 docker build app/ --target bin --output app/bin/ --platform linux
 
-docker build -t georgebaptista/quiz-api ./
+docker build -t georgebaptista/quiz-api:0.1 ./
 
 docker images
 
-docker push georgebaptista/quiz-api
+docker push georgebaptista/quiz-api:0.1
 ```
