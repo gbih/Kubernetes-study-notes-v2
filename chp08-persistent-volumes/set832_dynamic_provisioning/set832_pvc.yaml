@@ -8,6 +8,6 @@ spec:
   # To enable dynamic provisioning, omit storageClassName field
   resources:
     requests: # Volume must provide at least same space as specified PV
-      storage: 100Mi
+      storage: 1Gi
   accessModes:
   - ReadWriteOnce # same as PV

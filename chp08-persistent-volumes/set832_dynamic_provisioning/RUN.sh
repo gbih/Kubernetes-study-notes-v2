@@ -11,7 +11,7 @@ echo "snap info microk8s | grep tracking"
 snap info microk8s | grep tracking
 echo $HR
 
-echo "Before running anything, make sure we don't have any PV or PVC objects running in cluster."
+echo "Before running anything, make sure we don't have any PV or PVC objects running in the cluster."
 
 NS=chp08-set832
 
@@ -73,7 +73,7 @@ echo "kubectl apply -f $FULLPATH/set832_pvc.yaml"
 kubectl apply -f $FULLPATH/set832_pvc.yaml
 echo $HR 
 
-enter
+
 
 echo "In a microk8s cluster, the persistent volume claim we create here is not bound immediately, and its status should be 'Pending'."
 echo "Here, our claim will remain in the Pending state until we create a pod that uses this claim."
@@ -92,8 +92,8 @@ echo "kubectl apply -f $FULLPATH/set832_pod-default.yaml"
 kubectl apply -f $FULLPATH/set832_pod-default.yaml
 echo $HR 
 
-echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set832 --timeout=120s"
-kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set832 --timeout=120s
+echo "kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set832 --timeout=360s"
+kubectl wait --for=condition=Ready=True pods/quiz-default -n=chp08-set832 --timeout=360s
 echo $HR
 
 enter
@@ -104,16 +104,10 @@ echo "kubectl get pv"
 kubectl get pv
 enter
 
-echo "kubectl describe pv"
-kubectl describe pv
-enter
-
 echo "kubectl get events -n=chp08-set832"
 kubectl get events -n=chp08-set832
-echo $HR
 
-echo "Press enter to delete objects"
-enter
+enter_delete
 
 #####
 
@@ -125,13 +119,13 @@ echo "kubectl delete ns chp08-set832"
 kubectl delete ns chp08-set832
 echo $HR
 
-PV=$(kubectl get pv -o=name)
-echo "PV exists: $PV"
-echo "kubectl patch $PV -p '{"metadata":{"finalizers":null}}'"
-kubectl patch $PV -p '{"metadata":{"finalizers":null}}'
-echo ""
-echo "kubectl delete pv $PV --force --grace-period=0"
-kubectl delete $PV --force --grace-period=0
+# PV=$(kubectl get pv -o=name)
+# echo "PV exists: $PV"
+# echo "kubectl patch $PV -p '{"metadata":{"finalizers":null}}'"
+# kubectl patch $PV -p '{"metadata":{"finalizers":null}}'
+# echo ""
+# echo "kubectl delete pv $PV --force --grace-period=0"
+# kubectl delete $PV --force --grace-period=0
 
 
 echo $HR_TOP
