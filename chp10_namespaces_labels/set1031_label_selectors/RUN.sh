@@ -83,6 +83,10 @@ kubectl delete pods -l rel=canary -n=chp10-set1031
 echo "kubectl delete pods -l rel=canary -n=chp10-set1031"
 echo $HR 
 
+echo "kubectl get events -n=chp10-set1031"
+kubectl get events -n=chp10-set1031
+
+enter_delete
 
 echo "kubectl delete ns chp10-set1031"
 kubectl delete ns chp10-set1031

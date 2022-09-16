@@ -53,6 +53,11 @@ kubectl get pods --field-selector status.phase!=Running -A
 
 echo $HR 
 
+echo "kubectl get events -n=chp10-set1032b"
+kubectl get events -n=chp10-set1032b
+
+enter_delete
+
 echo "kubectl delete ns chp10-set1032b"
 kubectl delete ns chp10-set1032b
 

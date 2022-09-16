@@ -78,6 +78,11 @@ kubectl get pods/kiada-front-end -n=chp10-set1042 \
 -o=custom-columns='CREATED-BY:.metadata.annotations.created-by,MANAGED:.metadata.annotations.managed,REVISION:.metadata.annotations.revision,COMPANY:.metadata.company'
 echo $HR
 
+echo "kubectl get events -n=chp10-set1042"
+kubectl get events -n=chp10-set1042
+
+enter_delete
+
 echo "kubectl delete ns chp10-set1042"
 kubectl delete ns chp10-set1042
 

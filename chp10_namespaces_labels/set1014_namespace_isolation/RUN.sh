@@ -23,6 +23,11 @@ echo -e "NODES\t\tNAMES"
 kubectl get pods -A -o jsonpath='{range .items[*]}{@.spec.nodeName}{"\t\t"}{@.metadata.name}{"\n"}{end}' 
 echo $HR
 
+echo "kubectl get events -n=chp10-set1014"
+kubectl get events -n=chp10-set1014
+
+enter_delete
+
 echo "kubectl delete ns chp10-set1014"
 kubectl delete ns chp10-set1014
 

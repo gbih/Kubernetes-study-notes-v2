@@ -19,6 +19,11 @@ echo "kubectl get pods -n=chp10-set1013 -o wide"
 kubectl get pods -n=chp10-set1013 -o wide
 echo $HR 
 
+echo "kubectl get events -n=chp10-set1013"
+kubectl get events -n=chp10-set1013
+
+enter_delete
+
 echo "kubectl delete ns chp10-set1013"
 kubectl delete ns chp10-set1013
 

@@ -88,6 +88,10 @@ echo "kubectl get pvc ssd-claim-set -n=chp10-set1032 --show-labels"
 kubectl get pvc ssd-claim-set -n=chp10-set1032 --show-labels
 echo $HR
 
+echo "kubectl get events -n=chp10-set1032"
+kubectl get events -n=chp10-set1032
+
+enter_delete
 
 echo "kubectl delete ns chp10-set1032"
 kubectl delete ns chp10-set1032

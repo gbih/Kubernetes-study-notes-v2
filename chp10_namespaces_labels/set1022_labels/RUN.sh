@@ -4,11 +4,9 @@ FULLPATH=$(pwd)
 
 echo $HR_TOP
 
-echo "Create namespace first"
 kubectl apply -f $FULLPATH/set1022_namespace.yaml
 echo $HR
 
-echo "Next, create objects"
 kubectl apply -f $FULLPATH/kiada --recursive
 echo ""
 
@@ -21,8 +19,6 @@ echo $HR
 echo "kubectl wait --for=condition=Ready=True pods/kiada-001 -n=chp10-set1022 --timeout=120s"
 kubectl wait --for=condition=Ready=True pods/kiada-001 -n=chp10-set1022 --timeout=120s
 echo $HR 
-
-kubectl wait --for=condition=Ready=True pods -n=chp10-set1022
 
 enter
 
@@ -61,6 +57,10 @@ echo "kubectl get pods --show-labels -n=chp10-set1022  | sort"
 kubectl get pods --show-labels -n=chp10-set1022  | sort
 echo $HR 
 
+echo "kubectl get events -n=chp10-set1022"
+kubectl get events -n=chp10-set1022
+
+enter_delete
 
 echo "kubectl delete ns chp10-set1022"
 kubectl delete ns chp10-set1022
