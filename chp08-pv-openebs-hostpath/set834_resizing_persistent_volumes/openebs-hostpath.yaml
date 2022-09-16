@@ -1,0 +1,20 @@
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    cas.openebs.io/config: |
+      - name: StorageType
+        value: "hostpath"
+      - name: BasePath
+        value: "/var/snap/microk8s/common/var/openebs/local"
+    meta.helm.sh/release-name: openebs
+    meta.helm.sh/release-namespace: openebs
+    openebs.io/cas-type: local
+    storageclass.kubernetes.io/is-default-class: "true"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: openebs-hostpath
+provisioner: openebs.io/local
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer

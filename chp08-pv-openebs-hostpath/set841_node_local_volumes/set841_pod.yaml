@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongodb-local
+  namespace: chp08-set841
+spec:
+  volumes:
+  - name: mongodb-data
+    persistentVolumeClaim:
+      claimName: quiz-data-local
+  containers:
+  - image: mongo:5
+    name: mongodb
+    imagePullPolicy: IfNotPresent
+    volumeMounts: 
+    - name: mongodb-data
+      mountPath: /data/db

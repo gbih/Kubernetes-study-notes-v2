@@ -1,0 +1,13 @@
+# If you’re using Minikube or kind, and you’d like to run this example, 
+# set the provisioner and parameters to the same values as in the default storage class. 
+# For this exercise, it doesn’t matter if the provisioned volume doesn’t actually use an SSD.
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast
+provisioner: openebs.io/local
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: ps-ssd
