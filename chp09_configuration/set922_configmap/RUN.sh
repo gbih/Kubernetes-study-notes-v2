@@ -30,7 +30,6 @@ echo $HR
 echo "Display the value of a given entry"
 echo "kubectl get cm kiada-config-yaml -n=chp09-set922 -o json | jq '.data["status-message"]'"
 kubectl get cm kiada-config-yaml -n=chp09-set922 -o json | jq '.data["status-message"]'
-echo $HR 
 
 echo "kubectl delete ns chp09-set922"
 kubectl delete ns chp09-set922

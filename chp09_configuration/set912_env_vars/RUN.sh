@@ -39,7 +39,12 @@ echo $HR
 
 echo "kubectl logs env-var-references-in-shell -n=chp09-set912"
 kubectl logs env-var-references-in-shell -n=chp09-set912
-echo $HR
+echo $HR 
+
+echo "kubectl get events -n=chp09-set912"
+kubectl get events -n=chp09-set912
+
+enter_delete
 
 echo "kubectl delete ns chp09-set912"
 kubectl delete ns chp09-set912

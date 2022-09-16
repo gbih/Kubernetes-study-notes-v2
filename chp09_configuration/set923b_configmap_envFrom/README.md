@@ -21,3 +21,14 @@ envFrom:
     name: kiada-config
     optional: true
 ```
+
+### Events
+
+```
+kubectl get events -n=chp09-set923b
+LAST SEEN   TYPE     REASON      OBJECT      MESSAGE
+4s          Normal   Scheduled   pod/kiada   Successfully assigned chp09-set923b/kiada to main
+3s          Normal   Pulled      pod/kiada   Container image "georgebaptista/kiada:0.4" already present on machine
+3s          Normal   Created     pod/kiada   Created container kiada
+3s          Normal   Started     pod/kiada   Started container kiada
+```

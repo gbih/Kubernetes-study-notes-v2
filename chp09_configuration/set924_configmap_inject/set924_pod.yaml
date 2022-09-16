@@ -11,7 +11,7 @@ spec:
       name: kiada-envoy-config
   containers:
   - name: kiada
-    image: luksa/kiada:0.4
+    image: georgebaptista/kiada:0.4
     imagePullPolicy: IfNotPresent
     ports:
     - name: http

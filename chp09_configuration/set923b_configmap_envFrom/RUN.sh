@@ -25,7 +25,12 @@ echo $HR
 echo "Check env-vars of the pod:"
 echo "kubectl exec kiada -n=chp09-set923b -- env"
 kubectl exec kiada -n=chp09-set923b -- env
-echo $HR
+echo $HR 
+
+echo "kubectl get events -n=chp09-set923b"
+kubectl get events -n=chp09-set923b
+
+enter_delete
 
 echo "kubectl delete ns chp09-set923b"
 kubectl delete ns chp09-set923b

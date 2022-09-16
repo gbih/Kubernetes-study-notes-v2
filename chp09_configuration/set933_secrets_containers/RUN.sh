@@ -43,6 +43,11 @@ echo "Check logs:"
 kubectl logs kiada-ssl -n=chp09-set933
 echo $HR 
 
+echo "kubectl get events -n=chp09-set933"
+kubectl get events -n=chp09-set933
+
+enter_delete
+
 echo "kubectl delete ns chp09-set933"
 kubectl delete ns chp09-set933
 

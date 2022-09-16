@@ -37,6 +37,11 @@ echo "kubectl exec kiada-ssl -c envoy -n=chp09-set924 -- ls /etc/envoy"
 kubectl exec kiada-ssl -c envoy -n=chp09-set924 -- ls /etc/envoy
 echo $HR 
 
+echo "kubectl get events -n=chp09-set924"
+kubectl get events -n=chp09-set924
+
+enter_delete
+
 echo "kubectl delete ns chp09-set924"
 kubectl delete ns chp09-set924
 

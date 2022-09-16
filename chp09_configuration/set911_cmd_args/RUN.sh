@@ -24,10 +24,8 @@ echo "kubectl delete pods/kiada -n=chp09-set911"
 kubectl delete pods/kiada -n=chp09-set911
 echo $HR
 
-
 echo "kubectl wait --for=delete pod/kiada -n=chp09-set911 --timeout=60s"
 kubectl wait --for=delete pod/kiada -n=chp09-set911 --timeout=60s
-
 
 echo "kubectl apply -f $FULLPATH/set911_pod_02_args.yaml"
 kubectl apply -f $FULLPATH/set911_pod_02_args.yaml
@@ -43,7 +41,12 @@ echo $HR
 
 echo "kubectl logs pods/kiada -n=chp09-set911"
 kubectl logs pods/kiada -n=chp09-set911
-echo $HR 
+echo $HR
+
+echo "kubectl get events -n=chp09-set911"
+kubectl get events -n=chp09-set911
+
+enter_delete
 
 
 echo "kubectl delete ns chp09-set911"

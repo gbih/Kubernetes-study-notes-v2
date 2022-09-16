@@ -53,12 +53,13 @@ echo "Log into kiada container and check the pod-metadata directory"
 echo ""
 echo "kubectl exec kiada-ssl -c kiada -n=chp09-set943 -- ls /pod-metadata"
 kubectl exec kiada-ssl -c kiada -n=chp09-set943 -- ls /pod-metadata
-enter
+echo $HR
 
-# echo "Check logs:"
-# echo ""
-# kubectl logs kiada-ssl -n=chp09-set943
-# echo $HR 
+
+echo "kubectl get events -n=chp09-set943"
+kubectl get events -n=chp09-set943
+
+enter_delete
 
 echo "kubectl delete ns chp09-set943"
 kubectl delete ns chp09-set943
