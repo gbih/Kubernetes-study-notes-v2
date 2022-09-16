@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  # Refers to storageClass object defined in set841_storage_class.yaml
+  # Refers to storageClass object defined in set841_sc_no_provisioner.yaml
   storageClassName: local 
   capacity:
     storage: 100Mi
@@ -16,8 +16,8 @@ spec:
       nodeSelectorTerms:
       - matchExpressions:
         - key: kubernetes.io/hostname
+        #- key: nodeName 
           operator: In
           values:
-          # SSD is attached to the node actionbook-v2
-          #- actionbook-v2
-          - worker1
+          #- worker1
+          - main

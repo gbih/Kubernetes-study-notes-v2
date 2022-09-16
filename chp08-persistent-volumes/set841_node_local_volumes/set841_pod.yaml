@@ -9,8 +9,9 @@ spec:
     persistentVolumeClaim:
       claimName: quiz-data-local
   containers:
-  - image: mongo 
-    name: mongodb 
+  - image: mongo:5
+    name: mongodb
+    imagePullPolicy: IfNotPresent
     volumeMounts: 
     - name: mongodb-data
       mountPath: /data/db

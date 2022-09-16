@@ -21,11 +21,10 @@ emulate_ssd () {
 	echo 'multipass exec $node_worker -- bash -c "sudo chmod 666 -R /mnt/ssd1"'
 	multipass exec $node_worker -- bash -c "sudo chmod 666 -R /mnt/ssd1"
 
-	echo 'multipass exec $node_worker -- bash -c "ls -l /mnt/ssd1"'
-	multipass exec $node_worker -- bash -c "ls -l /mnt/ssd1"
+	echo 'multipass exec $node_worker -- bash -c "ls -l /mnt"'
+	multipass exec $node_worker -- bash -c "ls -l /mnt"
 
 	echo $HR
 }
 
 emulate_ssd 'worker1'
-emulate_ssd 'worker2'
