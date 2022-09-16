@@ -105,6 +105,11 @@ echo "kubectl exec -it quote-001 -n=chp11-set1113 -c nginx -- env | sort"
 kubectl exec -it quote-001 -n=chp11-set1113 -c nginx -- env | sort
 echo $HR 
 
+echo "kubectl get events -n=chp11-set1113"
+kubectl get events -n=chp11-set1113
+
+enter_delete
+
 echo "kubectl delete ns chp11-set1113"
 kubectl delete ns chp11-set1113
 

@@ -32,6 +32,11 @@ echo "kubectl get svc -n=chp11-set1111 -o wide"
 kubectl get svc -n=chp11-set1111 -o wide
 echo $HR 
 
+echo "kubectl get events -n=chp11-set1111"
+kubectl get events -n=chp11-set1111
+
+enter_delete
+
 echo "kubectl delete ns chp11-set1111"
 kubectl delete ns chp11-set1111
 
