@@ -78,6 +78,10 @@ kubectl get events -n=chp08-set841
 
 enter_delete
 
+echo "kubectl delete sc local"
+kubectl delete sc local
+echo $HR 
+
 echo "kubectl delete ns chp08-set841"
 kubectl delete ns chp08-set841
 
