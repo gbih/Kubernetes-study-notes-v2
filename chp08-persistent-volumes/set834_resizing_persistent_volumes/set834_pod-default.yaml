@@ -11,13 +11,14 @@ spec:
       claimName: quiz-data-default
   containers:
   - name: quiz-api
-    image: georgebaptista/quiz-api
-    imagePullPolicy: Always
+    image: georgebaptista/quiz-api:0.1
+    imagePullPolicy: IfNotPresent
     ports:
     - name: http
       containerPort: 8080
   - name: mongo
     image: mongo:5
+    imagePullPolicy: IfNotPresent
     volumeMounts:
     - name: quiz-data
       mountPath: /data/db

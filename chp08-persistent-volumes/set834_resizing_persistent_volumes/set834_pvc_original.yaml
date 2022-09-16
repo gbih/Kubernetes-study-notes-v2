@@ -3,11 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: quiz-data-default
   namespace: chp08-set834
-  
 spec:
   # To enable dynamic provisioning, omit storageClassName field
   resources:
     requests: # Volume must provide at least same space as specified PV
-      storage: 900Mi
+      storage: 100Mi
   accessModes:
   - ReadWriteOnce # same as PV
