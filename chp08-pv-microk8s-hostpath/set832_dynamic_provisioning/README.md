@@ -10,18 +10,11 @@
 
 ### Events
 
+We are using openebs-jiva-csi-default as the provisioner. This doesn't seem to work with our microk8s cluster:
+
 ```
 kubectl get events -n=chp08-set832
-LAST SEEN   TYPE     REASON                  OBJECT                                    MESSAGE
-23s         Normal   WaitForFirstConsumer    persistentvolumeclaim/quiz-data-default   waiting for first consumer to be created before binding
-16s         Normal   Provisioning            persistentvolumeclaim/quiz-data-default   External provisioner is provisioning volume for claim "chp08-set832/quiz-data-default"
-16s         Normal   ExternalProvisioning    persistentvolumeclaim/quiz-data-default   waiting for a volume to be created, either by external provisioner "microk8s.io/hostpath" or manually created by system administrator
-10s         Normal   ProvisioningSucceeded   persistentvolumeclaim/quiz-data-default   Successfully provisioned volume pvc-48f5d6e4-7550-4867-8237-49d72dc4d482
-9s          Normal   Scheduled               pod/quiz-default                          Successfully assigned chp08-set832/quiz-default to worker1
-8s          Normal   Pulled                  pod/quiz-default                          Container image "georgebaptista/quiz-api:0.1" already present on machine
-8s          Normal   Created                 pod/quiz-default                          Created container quiz-api
-7s          Normal   Started                 pod/quiz-default                          Started container quiz-api
-7s          Normal   Pulled                  pod/quiz-default                          Container image "mongo:5" already present on machine
-7s          Normal   Created                 pod/quiz-default                          Created container mongo
-7s          Normal   Started                 pod/quiz-default                          Started container mongo
+LAST SEEN   TYPE      REASON        OBJECT             MESSAGE
+105s        Warning   FailedMount   pod/quiz-default   Unable to attach or mount volumes: unmounted volumes=[quiz-data], unattached volumes=[kube-api-access-67d5p quiz-data]: timed out waiting for the condition
+49s         Warning   FailedMount   pod/quiz-default   MountVolume.MountDevice failed for volume "pvc-e9157912-2b53-412c-86cb-d6dcb9e94c6f" : rpc error: code = FailedPrecondition desc = Max retry count exceeded, volume: {pvc-e9157912-2b53-412c-86cb-d6dcb9e94c6f} is not ready
 ```

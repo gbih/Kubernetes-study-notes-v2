@@ -1,6 +1,6 @@
 # Study Notes for Kubernetes In Action, v2
 
-## Chapter 8: Persisting data in PersistentVolumes
+## Chapter 8: Persisting data in PersistentVolumes (microk8s-hostpath)
 
 ### Objectives
 - Using PersistentVolume objects to represent persistent storage
@@ -8,6 +8,7 @@
 - Dynamic provisioning of persistent volumes
 - Using node-local persistent storage
 
+We are using the `microk8s-hostpath` StorageClass here.
 
 ### Notes
 
@@ -16,7 +17,6 @@
 The default StorageClass `microk8s-hostpath` is a hostpath based storage, and designed for a single node MicroK8s.
 
 For multi node clusters, it is recommended to use a different approach, such as openebs, rook (ceph), portworx, etc.
-
 
 * https://github.com/canonical/microk8s/issues/2618#issuecomment-931988032
 * https://github.com/canonical/microk8s/issues/1597
