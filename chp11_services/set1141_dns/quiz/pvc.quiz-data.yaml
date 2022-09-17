@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: quiz-data
+  namespace: chp11-set1141
+  labels:
+    app: quiz
+spec:
+  # To enable dynamic provisioning, omit storageClassName field
+  resources:
+    requests:
+      storage: 100Mi
+  accessModes:
+  - ReadWriteOnce
+
