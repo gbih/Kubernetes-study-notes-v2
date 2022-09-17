@@ -1,16 +1,16 @@
-# 11.1.3b Using Services in a Pod
+# 11.2.1 Exposing pods through a NodePort service
 
 
 ### Objective
 
-1. Deploy the Kiada pods and configure them to use both the Quiz and Quote services.
+1. Make pods accessible to external clients by exposing them through a NodePort service.
 
 ### Notes
 
+* When creating a NodePort service, the pods that match its selector are accessible through a specific port on all nodes in the cluster.
 
-**Using storage vs openebs to provision PersistentVolumes in microk8s:**
+* Because the port is open on the nodes, this is called "NodePort".
 
-https://github.com/canonical/microk8s/issues/2618#issuecomment-931988032
+* Like a ClusterIP service, a NodePort service is accessible through its internal cluster IP, but also through the node port on each of the cluster nodes.
 
-* The storage addon (microk8s enable storage) is not meant to be used in multi-node clusters. 
-* On a multi-node cluster storage is expected to be provided by an external to k8s service. 
+* It doesn't matter which node a client connects to, because all the nodes will forward the connection to a pod that belongs to the service, regardless of which node is running the pod.

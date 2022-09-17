@@ -39,7 +39,6 @@ kubectl get pv
 
 enter
 
-
 echo "QUIZ_CLUSTER_IP=$(kubectl get svc/quiz --no-headers -n=chp11-set1113 -o custom-columns=":spec.clusterIP")"
 QUIZ_CLUSTER_IP=$(kubectl get svc/quiz --no-headers -n=chp11-set1113 -o custom-columns=":spec.clusterIP")
 
@@ -127,7 +126,6 @@ sleep 3
 
 echo "kubectl exec -it quote-001 -n=chp11-set1113 -c nginx -- env | sort"
 kubectl exec -it quote-001 -n=chp11-set1113 -c nginx -- env | sort
-
 
 enter_delete
 

@@ -9,9 +9,9 @@ spec:
     app: kiada
   ports:
   - name: http
-    port: 80
-    nodePort: 30080
-    targetPort: 8080
+    port: 80 # port on the service's cluster IP
+    nodePort: 30080 # accessible port on each cluster nodes
+    targetPort: 8080 # port that the pod listens to
   - name: https
     port: 443
     nodePort: 30443
