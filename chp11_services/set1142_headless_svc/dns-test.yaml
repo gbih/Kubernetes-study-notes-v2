@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - image: georgebaptista/tiny-tools-bash:0.1
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     name: dns-test
     resources: {}
     stdin: true
