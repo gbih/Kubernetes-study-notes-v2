@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: time-api
+  namespace: chp11-set1143
+spec:
+  type: ExternalName
+  externalName: worldtimeapi.org
