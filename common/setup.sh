@@ -33,3 +33,8 @@ HR=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -)
 
 HR_TOP=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' "#")
 
+# Show the microk8s version
+# jq -r option: output raw strings, not JSON texts
+k8s_client=$(kubectl version -o json | jq -r .clientVersion.gitVersion)
+k8s_server=$(kubectl version -o json | jq -r .serverVersion.gitVersion)
+echo "microk8s: client $k8s_client, server $k8s_server"
