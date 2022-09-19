@@ -8,6 +8,14 @@ Example:
 sed -i '' -e 's/set1162/set1163/g' `grep 'set1162' -rl *`
 ```
 
+OSX-specific:
+
+```
+gsed -i '' -e 's/set1162/set1163/g' `grep 'set1162' -rl *`
+```
+
+
+
 Explanation:
 
 * Replace In-Place: `sed -i`:
