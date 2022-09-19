@@ -2,10 +2,10 @@
 
 ### Search and Replace In-Place
 
-Example:
+Example (OSX-specific)
 
 ```
-sed -i '' -e 's/set1162/set1163/g' `grep 'set1162' -rl *`
+gsed -i '' -e 's/set1162/set1163/g' `grep 'set1162' -rl *`
 ```
 
 OSX-specific:
