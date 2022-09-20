@@ -16,7 +16,6 @@ echo ""
 kubectl apply -f $FULLPATH/set1222_dns-test.yaml
 echo ""
 
-kubectl apply -f $FULLPATH/set1222_dns-test.yaml
 kubectl apply -f $FULLPATH/set1222_ingress_kiada.yaml
 kubectl apply -f $FULLPATH/set1222_ingress_quote.yaml
 
