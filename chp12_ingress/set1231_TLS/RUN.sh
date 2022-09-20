@@ -90,6 +90,9 @@ enter_delete
 
 ##### Clean-up
 
+echo "Delete data used for TLS:"
+rm ./example.crt example.key
+
 echo "kubectl delete ns chp12-set1231"
 kubectl delete ns chp12-set1231
 
