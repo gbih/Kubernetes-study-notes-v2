@@ -5,6 +5,7 @@ CLUSTER-PSP-SETUP
 tls.cert
 tls.key
 *.cert
+*.crt
 *.key
 *.ipynb_checkpoints
 
