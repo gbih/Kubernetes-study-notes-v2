@@ -154,6 +154,9 @@ echo "Install jq"
 multipass exec $VM -- bash -c "sudo apt-get install jq -y"
 echo $HR
 
+echo "Install yq"
+multipass exec $VM -- bash -c "sudo apt-get install yq -y"
+echo $HR
 
 #####################
 
