@@ -1,6 +1,0 @@
-HTTP/1.1 200 OK
-Date: Tue, 20 Sep 2022 07:22:59 GMT
-Content-Type: text/plain
-Connection: keep-alive
-Set-Cookie: SESSION_COOKIE=1663658580.674.715.221478|f4cd5cb3890a8745725b6cd978e1ff48; Path=/; HttpOnly
-
