@@ -1,20 +1,14 @@
-# 12.2.1 Exposing a service through an Ingress
+# 12.2.2 Path-based ingress traffic routing
 
 
 ### Objective
 
-1. Explore implementing an Ingress object to expose the kiada service.
+1. Explore how an Ingress object can contain many rules and map multiple hosts and paths to multiple services. 
 
 
 ### Notes
 
-**Adding the Ingress IP to the DNS**
+* We are using two individual ingress objects, one for api-example-com and one for kiada-example-com.
 
-After adding an Ingress to a production cluster, you add a record to the DNS server. To enable external clients to access the service through the ingress, configure the DNS server to resolve the domain name `kiada.example.com` to the ingress IP .....
+* See the resemblance to routes in various web-app frameworks, such as React Router, Elixir's Phoenix Routing, Go's http.ServeMux, etc.
 
-
-### Setup
-
-```
-gsed -i '' -e 's/set1162/set1163/g' `grep 'set1162' -rl *`
-```
