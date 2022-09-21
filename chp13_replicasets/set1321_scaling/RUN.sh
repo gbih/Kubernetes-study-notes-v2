@@ -128,41 +128,6 @@ echo "kubectl get pods -l app=kiada,rel=stable -n=chp13-set1321 --show-labels --
 kubectl get pods -l app=kiada,rel=stable -n=chp13-set1321 --show-labels --sort-by=.status.startTime
 enter
 
-
-
-
-
-
-
-
-# echo "kubectl describe pods kiada-001 -n=chp13-set1321 | head -14"
-# kubectl describe pods kiada-001 -n=chp13-set1321 | head -14
-# enter
-
-# echo "kubectl get $rs_pod -n=chp13-set1321 -o yaml | head -20"
-# kubectl get $rs_pod -n=chp13-set1321 -o yaml | head -20
-# enter
-
-# echo "Delete the parent ReplicaSet kiada. This should automatically delete the dependent pod objects."
-# echo ""
-# echo "kubectl delete rs kiada -n=chp13-set1321"
-# kubectl delete rs kiada -n=chp13-set1321
-# echo $HR 
-
-# echo "kubectl get pods -n=chp13-set1321 --show-labels"
-# kubectl get pods -n=chp13-set1321 --show-labels
-# echo $HR
-
-# echo "kubectl wait --for=condition=Ready=False $rs_pod -n=chp13-set1321 --timeout=120s"
-# kubectl wait --for=condition=Ready=False $rs_pod -n=chp13-set1321 --timeout=120s
-# echo $HR
-
-# sleep 2
-
-# echo "kubectl get pods -n=chp13-set1321 --show-labels"
-# kubectl get pods -n=chp13-set1321 --show-labels
-# echo $HR
-
 ##### Clean-up
 
 enter_delete
