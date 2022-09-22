@@ -1,4 +1,4 @@
-# 13.3.2 Updating the Pod template
+# 13.2.2 Updating the Pod template
 
 
 ### Objective
