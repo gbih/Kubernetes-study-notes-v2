@@ -16,7 +16,7 @@ echo "kubectl apply -f $FULLPATH/SETUP --recursive"
 kubectl apply -f $FULLPATH/SETUP --recursive
 echo $HR
 
-echo "Create Deployment v0.5"
+echo "Create Deployment v0.6"
 echo "kubectl apply -f $FULLPATH/set1422_deployment_kiada_v0.6.yaml"
 kubectl apply -f $FULLPATH/set1422_deployment_kiada_v0.6.yaml
 echo $HR 
