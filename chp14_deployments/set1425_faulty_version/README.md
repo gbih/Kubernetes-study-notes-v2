@@ -10,8 +10,8 @@
 * Reference:
 	- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#failed-deployment
 
-* flagger, https://github.com/fluxcd/flagger
-* Argo Rollouts, https://argoproj.github.io/argo-rollouts/
+* flagger: https://github.com/fluxcd/flagger
+* Argo Rollouts: https://argoproj.github.io/argo-rollouts/
 
 ### To-do
 
