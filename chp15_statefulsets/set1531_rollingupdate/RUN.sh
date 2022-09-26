@@ -104,7 +104,7 @@ kubectl rollout history sts quiz -n=chp15-set1531
 echo $HR 
 
 echo "Show list of ControllerRevision objects:"
-echo $HR 
+echo ""
 echo "kubectl get controllerrevisions -n=chp15-set1531"
 kubectl get controllerrevisions -n=chp15-set1531
 
