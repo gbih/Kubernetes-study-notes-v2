@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quiz-pods
+  namespace: chp15-set1524
+spec:
+  clusterIP: None # Create a headless service
+  publishNotReadyAddresses: true
+  selector:
+    app: quiz
+  ports:
+  - name: mongodb 
+    port: 27017
