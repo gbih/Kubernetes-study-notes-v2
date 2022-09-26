@@ -72,3 +72,12 @@ The kube-apiserver file should look like this:
 ```bash
 microk8s start
 ```
+
+### Notes
+
+In the end, the book recommends NOT setting either retention policy to Delete. This is to reduce the probability of losing data accidentally. After this chapter material has been explored, be sure to revert back the kube-apiserver file, or set this feature-gates argument to false:
+
+```
+--feature-gates=StatefulSetAutoDeletePVC=false
+```
+
