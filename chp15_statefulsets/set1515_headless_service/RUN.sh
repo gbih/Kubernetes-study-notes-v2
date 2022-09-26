@@ -42,7 +42,7 @@ enter
 echo "Initiate the MongoDB replica set in its quiz-0/quiz-1/quiz-2 pods, since it started with the --replSet option for replication."
 echo "Remember that we also have to list the namespace in the host information:"
 echo ""
-kubectl exec -it quiz-0 -c mongo -n=chp15-set1515 -- mongosh --eval 'rs.initiate({
+kubectl exec -it quiz-0 -c mongo -n=chp15-set1515 -- mongosh --quiet --eval 'rs.initiate({
   _id: "quiz",
   members: [
     {_id: 0, host: "quiz-0.quiz-pods.chp15-set1515.svc.cluster.local:27017"},
@@ -71,8 +71,8 @@ echo "kubectl get pvc -l app=quiz -n=chp15-set1515"
 kubectl get pvc -l app=quiz -n=chp15-set1515
 echo $HR
 
-echo "kubectl exec quiz-0 -c mongo -n=chp15-set1515 -- mongosh kiada --quiet --eval 'db.questions.find()'"
-kubectl exec quiz-0 -c mongo -n=chp15-set1515 -- mongosh kiada --quiet --eval 'db.questions.find()'
+echo "kubectl exec quiz-0 -c mongo -n=chp15-set1515 -- mongosh --quiet --eval 'db.questions.find()'"
+kubectl exec quiz-0 -c mongo -n=chp15-set1515 -- mongosh --quiet --eval 'db.questions.find()'
  
 ##### Clean-up
 

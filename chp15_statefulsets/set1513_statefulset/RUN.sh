@@ -47,7 +47,7 @@ enter
 echo "Need to initiate the MongoDB replica set, since it started with the --replSet option for replication:"
 echo "Remember that we also have to list the namespace in the host information:"
 echo ""
-kubectl exec -it quiz-0 -c mongo -n=chp15-set1513 -- mongosh --eval 'rs.initiate({
+kubectl exec -it quiz-0 -c mongo -n=chp15-set1513 -- mongosh --quiet --eval 'rs.initiate({
   _id: "quiz",
   members: [
     {_id: 0, host: "quiz-0.quiz-pods.chp15-set1513.svc.cluster.local:27017"},

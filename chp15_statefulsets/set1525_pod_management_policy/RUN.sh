@@ -47,7 +47,7 @@ echo $HR
 echo "Initiate the MongoDB replica set in its quiz-0/quiz-1/quiz-2 pods, since it started with the --replSet option for replication."
 echo "Remember that we also have to list the namespace in the host information:"
 echo ""
-kubectl exec -it quiz-0 -c mongo -n=chp15-set1525 -- mongosh --eval 'rs.initiate({
+kubectl exec -it quiz-0 -c mongo -n=chp15-set1525 -- mongosh --quiet --eval 'rs.initiate({
   _id: "quiz",
   members: [
     {_id: 0, host: "quiz-0.quiz-pods.chp15-set1525.svc.cluster.local:27017"},
@@ -55,20 +55,6 @@ kubectl exec -it quiz-0 -c mongo -n=chp15-set1525 -- mongosh --eval 'rs.initiate
     {_id: 2, host: "quiz-2.quiz-pods.chp15-set1525.svc.cluster.local:27017"}]})'
 
 echo $HR
-
-echo "Disable MongoDB reminder of FreeMonitoring:"
-echo "kubectl exec quiz-0 -c mongo -n=chp15-set1525 -- mongosh kiada --quiet --eval 'db.disableFreeMonitoring()'"
-kubectl exec quiz-0 -c mongo -n=chp15-set1525 -- mongosh kiada --quiet --eval 'db.disableFreeMonitoring()'
-echo $HR
-
-# echo "kubectl rollout status sts quiz -n=chp15-set1525"
-# kubectl rollout status sts quiz -n=chp15-set1525
-# echo $HR
-
-# echo "kubectl get pods -l app=quiz -n=chp15-set1525"
-# kubectl get pods -l app=quiz -n=chp15-set1525
-
-# echo $HR
 
 echo """
 We can see that only a single replica is created when we use the StatefulSet with the OrderedReady policy.
