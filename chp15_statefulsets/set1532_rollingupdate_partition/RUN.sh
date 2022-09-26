@@ -21,7 +21,7 @@ kubectl apply -f $FULLPATH/SETUP --recursive
 echo $HR
 
 kubectl apply -f $FULLPATH/set1532_svc_quiz.yaml
-kubectl apply -f $FULLPATH/set1531_statefulset_quiz_v1.yaml
+kubectl apply -f $FULLPATH/set1532_statefulset_quiz_v1.yaml
 echo $HR 
 
 sleep 4
