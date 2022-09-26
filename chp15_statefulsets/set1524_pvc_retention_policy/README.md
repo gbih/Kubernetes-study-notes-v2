@@ -30,7 +30,7 @@ sudo vi /var/snap/microk8s/current/args/kube-apiserver
 ```
 
 
-The kube-apiserver file should looks like this:
+The kube-apiserver file should look like this:
 
 ```
 --cert-dir=${SNAP_DATA}/certs
