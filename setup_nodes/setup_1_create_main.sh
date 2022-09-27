@@ -10,8 +10,6 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 #####################
 
 # Note we cannot use underbars _ in the multipass instance name, we are limited to a dash -
-#VM='actionbook-v1'
-#VM='actionbook-v2'
 VM='main'
 
 
@@ -155,7 +153,8 @@ multipass exec $VM -- bash -c "sudo apt-get install jq -y"
 echo $HR
 
 echo "Install yq"
-multipass exec $VM -- bash -c "sudo apt-get install yq -y"
+multipass exec $VM -- bash -c "sudo snap install yq"
+
 echo $HR
 
 #####################
