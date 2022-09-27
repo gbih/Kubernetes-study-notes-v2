@@ -30,43 +30,48 @@ fi
 
 echo $HR 
 
-echo "Create a CustomResourceDefinition object for MongoDB:"
+# Same steps as listed here:
+# https://github.com/mongodb/mongodb-kubernetes-operator/blob/master/docs/install-upgrade.md#install-the-operator-using-kubectl
+
+echo "1. Create a CustomResourceDefinition object for MongoDB:"
 kubectl apply -f config/crd/bases/mongodbcommunity.mongodb.com_mongodbcommunity.yaml
-echo $HR 
+echo ""
 
-echo "Create security-related objects via RBAC manifest files, in the mongodb namespace:"
-kubectl apply -k config/rbac/ -n mongodb
-echo $HR 
-
-echo "Install the Operator:"
-kubectl create -f config/manager/manager.yaml -n mongodb
-enter 
-
-#####
-
-echo "Examine created  MongoDB CRD-related objects:"
-echo "kubectl get crd mongodbcommunity.mongodbcommunity.mongodb.com"
-kubectl get crd mongodbcommunity.mongodbcommunity.mongodb.com
+echo "Verify that the Custom Resource Definitions installed successfully:"
+kubectl get crd/mongodbcommunity.mongodbcommunity.mongodb.com
 echo $HR
 
-echo "kubectl get all -n=mongodb"
-kubectl get all -n=mongodb
+
+echo "2. Install the necessary roles and role-bindings, in namespace mongodb"
+kubectl apply -k config/rbac/ -n mongodb
+echo ""
+
+echo "Verify that the resources have been created:"
+kubectl get role mongodb-kubernetes-operator -n mongodb
+echo ""
+kubectl get rolebinding mongodb-kubernetes-operator  -n mongodb
+echo ""
+kubectl get serviceaccount mongodb-kubernetes-operator  -n mongodb
 echo $HR 
 
-echo "Examine security-related RBAC objects:"
-echo "kubectl get role -n mongodb"
-kubectl get role -n mongodb
+
+echo "3. Install the Operator:"
+kubectl create -f config/manager/manager.yaml -n mongodb
 echo ""
-echo "kubectl get rolebinding -n mongodb -o wide"
-kubectl get rolebinding -n mongodb -o wide
-echo ""
-echo "kubectl get serviceaccount -n mongodb"
-kubectl get serviceaccount -n mongodb
-echo $HR 
+
+echo "Verify that the Operator installed successsfully:"
+kubectl get pods -n mongodb
+echo $HR
+
 
 ##### Clean-up
 
 echo "Clean-up:"
 echo ""
-echo "Usually we delete the namespace created specifically per set, but since we want to use the MongoDB operator later, we will leave this 'mongodb' namespace and the objects created within it running"
+echo "Usually we delete the namespace created specifically per set, but since we want to use the MongoDB operator later, we will leave this 'mongodb' namespace and the objects created within it running."
+
+echo ""
+echo "kubectl get ns mongodb"
+kubectl get ns mongodb
+
 echo $HR_TOP
