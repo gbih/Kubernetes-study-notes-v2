@@ -62,12 +62,11 @@ kubectl get rolebinding -n mongodb -o wide
 echo ""
 echo "kubectl get serviceaccount -n mongodb"
 kubectl get serviceaccount -n mongodb
+echo $HR 
 
 ##### Clean-up
 
-enter_delete
-
-echo "kubectl delete ns mongodb"
-kubectl delete ns mongodb
-
+echo "Clean-up:"
+echo ""
+echo "Usually we delete the namespace created specifically per set, but since we want to use the MongoDB operator later, we will leave this 'mongodb' namespace and the objects created within it running"
 echo $HR_TOP
