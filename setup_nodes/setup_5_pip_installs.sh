@@ -14,11 +14,12 @@ VM='main'
 
 echo "Install Python stuff"
 echo "Transfer requirements file from host to vm:"
-#multipass exec $VM -- bash -c "sudo chmod a+wrx /home/ubuntu/src/"
+multipass exec $VM -- bash -c "sudo chmod a+wrx /home/ubuntu/src/"
 multipass transfer ./requirements.txt $VM:/home/ubuntu/src/working/requirements.txt
 multipass exec $VM -- bash -c "sudo apt install python3-pip -y"
 multipass exec $VM -- bash -c "pip3 install -r /home/ubuntu/src/working/requirements.txt"
 echo $HR
+
 
 #####################
 

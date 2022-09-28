@@ -1,4 +1,5 @@
 #!/bin/bash
+source ../common/setup.sh
 
 clear
 
@@ -12,6 +13,10 @@ HR2=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' =)
 # Note we cannot use underbars _ in the multipass instance name, we are limited to a dash -
 VM='main'
 
+echo "Check that DOCKER_USER and DOCKER_PWD are initialized:"
+echo "$DOCKER_USER" "$DOCKER_PWD"
+
+enter
 
 # if [ $DOCKER_USER=="" ] 
 # then
@@ -46,8 +51,12 @@ multipass list
 echo $HR
 
 
-echo "multipass launch --name $VM --disk 50G --cpus 1 --mem 6G"
-multipass launch --name $VM --disk 50G --cpus 1 --mem 6G
+# The number of physical CPUs doesn't matter, the virtual CPUs are just threads on the physical CPU. 
+# However, there is a limit of That said, 8 is the compiled-in maximum of threads the virtual machine supports. 
+# https://github.com/canonical/multipass/issues/2350#issuecomment-975289255
+
+echo "multipass launch --name $VM --disk 50G --cpus 4 --mem 6G"
+multipass launch --name $VM --disk 50G --cpus 4 --mem 6G
 echo $HR
 
 echo "Check info"
