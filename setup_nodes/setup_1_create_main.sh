@@ -100,9 +100,8 @@ multipass exec $VM -- bash -c "sudo microk8s disable ha-cluster" # minimize memo
 multipass exec $VM -- bash -c "sudo microk8s enable dns"
 multipass exec $VM -- bash -c "sudo microk8s enable hostpath-storage"
 multipass exec $VM -- bash -c "sudo microk8s enable ingress"
+multipass exec $VM -- bash -c "sudo microk8s metrics-server"
 multipass exec $VM -- bash -c "sudo microk8s enable metallb:10.64.150.53-10.64.150.59"
-
-# microk8s enable dns hostpath-storage ingress metallb:10.64.150.53-10.64.150.59
 
 # Need to add openebs, https://microk8s.io/docs/addon-openebs
 multipass exec $VM -- bash -c "sudo microk8s enable community"
