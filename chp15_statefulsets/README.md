@@ -1,11 +1,11 @@
 # Study Notes for Kubernetes In Action, v2
 
-## Chapter 14: Managing Pods with Deployments
+## Chapter 15: Deploying stateful workloads with StatefulSets
 
 ### Objectives
 
-* Deploy stateless workloads with the Deployment object
-* Horizontally scale Deployments
-* Update workloads declaratively
-* Prevent rollouts of faulty workloads
-* Implement various deployment strategies
+* Manage stateful workloads via Stateful objects
+* Expose individual Pods via headless Services
+* Understand the difference between Deployments and StatefulSets
+* Automate stateful workload management with Kubernetes Operators
+
