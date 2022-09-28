@@ -6,8 +6,8 @@ echo $HR_TOP
 
 ##### Set-up
 
+echo "kubectl apply -f $FULLPATH/set1541_namespace.yaml"
 kubectl apply -f $FULLPATH/set1541_namespace.yaml
-echo ""
 echo "kubectl wait --for=jsonpath=.status.phase=Active ns/mongodb --timeout=120s"
 kubectl wait --for=jsonpath=.status.phase=Active ns/mongodb --timeout=120s
 
@@ -30,48 +30,71 @@ fi
 
 echo $HR 
 
+# For trouble-shooting:
+# echo "Check the cluster Node's status and other details before installing the Operator:"
+# echo ""
+# echo "kubectl describe nodes"
+# kubectl describe nodes
+# enter
+
+
 # Same steps as listed here:
 # https://github.com/mongodb/mongodb-kubernetes-operator/blob/master/docs/install-upgrade.md#install-the-operator-using-kubectl
 
-echo "1. Create a CustomResourceDefinition object for MongoDB:"
+echo "1. Create a CustomResourceDefinition object for MongoDB (no namespace):"
+echo "kubectl apply -f config/crd/bases/mongodbcommunity.mongodb.com_mongodbcommunity.yaml"
 kubectl apply -f config/crd/bases/mongodbcommunity.mongodb.com_mongodbcommunity.yaml
 echo ""
 
 echo "Verify that the Custom Resource Definitions installed successfully:"
-kubectl get crd/mongodbcommunity.mongodbcommunity.mongodb.com
-echo $HR
+echo "kubectl get crd mongodbcommunity.mongodbcommunity.mongodb.com"
+kubectl get crd mongodbcommunity.mongodbcommunity.mongodb.com
+enter
 
 
 echo "2. Install the necessary roles and role-bindings, in namespace mongodb"
+echo "kubectl apply -k config/rbac/ -n mongodb"
 kubectl apply -k config/rbac/ -n mongodb
 echo ""
 
 echo "Verify that the resources have been created:"
 kubectl get role mongodb-kubernetes-operator -n mongodb
 echo ""
-kubectl get rolebinding mongodb-kubernetes-operator  -n mongodb
+kubectl get rolebinding mongodb-kubernetes-operator -n mongodb
 echo ""
-kubectl get serviceaccount mongodb-kubernetes-operator  -n mongodb
-echo $HR 
+kubectl get serviceaccount mongodb-kubernetes-operator -n mongodb
+enter
 
 
-echo "3. Install the Operator:"
-kubectl create -f config/manager/manager.yaml -n mongodb
+echo "3. Install the Deployment for the MongoDB Operator:"
+echo "kubectl apply -f config/manager/manager.yaml -n mongodb"
+kubectl apply -f config/manager/manager.yaml -n mongodb
 echo ""
+
+mongodb_pod=$(kubectl get pods -n mongodb -o name)
 
 echo "Verify that the Operator installed successsfully:"
-kubectl get pods -n mongodb
+echo "kubectl wait $mongodb_pod -n=mongodb --for=jsonpath=.status.phase=Running --timeout=60s"
+kubectl wait $mongodb_pod -n=mongodb --for=jsonpath=.status.phase=Running --timeout=60s
 echo $HR
 
+echo "kubectl get all -n=mongodb"
+kubectl get all -n=mongodb
+
+
+enter_delete
 
 ##### Clean-up
 
-echo "Clean-up:"
+echo "Delete the CustomResourceDefinition:"
 echo ""
-echo "Usually we delete the namespace created specifically per set, but since we want to use the MongoDB operator later, we will leave this 'mongodb' namespace and the objects created within it running."
+echo "kubectl delete crd mongodbcommunity.mongodbcommunity.mongodb.com"
+kubectl delete crd mongodbcommunity.mongodbcommunity.mongodb.com
+echo $HR 
 
+echo "Delete the namespace, deployment and rbac-associated objects:"
 echo ""
-echo "kubectl get ns mongodb"
-kubectl get ns mongodb
+echo "kubectl delete ns mongodb"
+kubectl delete ns mongodb
 
 echo $HR_TOP
